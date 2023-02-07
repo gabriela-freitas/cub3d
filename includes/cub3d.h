@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/07 19:21:28 by dmendonc         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:57:14 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "get_next_line.h"
-#include "../libft/libft.h"
+#include "../get_next_line/get_next_line.h"
 
 typedef struct s_data
 {
