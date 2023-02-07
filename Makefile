@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+         #
+#    By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 20:35:26 by gafreita          #+#    #+#              #
-#    Updated: 2023/02/07 19:49:21 by dmendonc         ###   ########.fr        #
+#    Updated: 2023/02/07 22:04:18 by gafreita         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ NAME = cub3d
 SRC_PATH = sources
 OBJECTS_NAME = $(SRC_NAME:.c=.o)
 CC = gcc
-CFLAGS = -I /usr/local/include
+INCLUDES = -I /usr/local/include -I ./includes/ -Imlx_linux
+CFLAGS = -Wall -Wextra -Werror $(INCLUDES)
 RM = rm -f
 SOURCES = $(wildcard sources/*/*.c) $(wildcard sources/*.c) $(wildcard libft/*.c)  $(wildcard get_next_line/*.c)
 OBJECTS = $(SOURCES:.c=.o)
@@ -28,9 +29,9 @@ WHITE = \033[0m
 GREEN = \033[32m
 
 all: $(NAME)
-	
+
 %.o: %.c
-	@$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	@$(CC) $(CFLAGS) -O3 -c $< -o $@
 
 $(NAME): $(OBJECTS)
 	-@$(CC) $(OBJECTS) $(LDLIBS) -o $(NAME)
@@ -45,4 +46,5 @@ fclean:
 
 re: fclean all
 
-.PHONY: all clean fclean re submodule
+
+.PHONY: all clean fclean re
