@@ -6,7 +6,7 @@
 #    By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 20:35:26 by gafreita          #+#    #+#              #
-#    Updated: 2023/02/07 22:04:18 by gafreita         ###   ########.fr        #
+#    Updated: 2023/02/08 21:48:30 by gafreita         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CFLAGS = -Wall -Wextra -Werror $(INCLUDES)
 RM = rm -f
 SOURCES = $(wildcard sources/*/*.c) $(wildcard sources/*.c) $(wildcard libft/*.c)  $(wildcard get_next_line/*.c)
 OBJECTS = $(SOURCES:.c=.o)
-LDLIBS = -g -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm #-fsanitize=address
+LDLIBS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -g -fsanitize=address
 BLUE = \033[34m
 YELL = \033[33m
 WHITE = \033[0m
@@ -38,11 +38,11 @@ $(NAME): $(OBJECTS)
 
 clean:
 	@$(RM) $(OBJECTS)
-	@echo -e "$(GREEN)OBJECTS DELETED$(WHITE)"
+	@echo "$(GREEN)OBJECTS DELETED$(WHITE)"
 
 fclean:
 	@rm -f $(NAME)
-	@echo -e "\n$(GREEN)FRACTOL ERASED$(WHITE)"
+	@echo "\n$(GREEN)$(NAME) ERASED$(WHITE)"
 
 re: fclean all
 

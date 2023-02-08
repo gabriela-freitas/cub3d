@@ -13,7 +13,7 @@
     "editor.tabSize": 4,
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
-    "editor.rulers": [80,120],
+    "editor.rulers": [80],
     "workbench.colorCustomizations": {
         "editorRuler.foreground": "#383838"
     }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/08 21:00:16 by dmendonc         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:36:20 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include "libft.h"
 
 #include "../get_next_line/get_next_line.h"
 
@@ -29,6 +30,7 @@ typedef struct s_parsing
 {
 	char	**file;
 	char	**map;
+	int		height;
 }	t_parse;
 
 
@@ -45,6 +47,8 @@ char	*get_first_line(t_data *data);
 char	*get_last_line(t_data *data);
 int		middle_line_map(char *line);
 int		map_test(t_data *data);
-void	parse_map(t_data *data);
+
+void	exit_message(char *message, t_data *data);
+void	read_file(char *file_name, t_data *data); //gabi
 
 #endif

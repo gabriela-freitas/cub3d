@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 22:13:32 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/08 21:18:03 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:39:21 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ size_t	ft_strlen(const char *str);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s1);
+char	*ft_strrchr(const char *s, int c);
 
 #endif

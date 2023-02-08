@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 18:00:28 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/02/08 21:01:18 by dmendonc         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:40:57 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ int	compare(const char *s1, const char *s2)
 	return (0);
 }
 
-int	map_test(t_data *data)
-{
-	char	*first_line;
-	char	*last_line;
+// int	map_test(t_data *data)
+// {
+// 	char	*first_line;
+// 	char	*last_line;
 
 
-	//se caract weird
-	//se apenas 1 : N, S, W, E
-	//se fechado
-	return(1);
-}
+// 	//se caract weird
+// 	//se apenas 1 : N, S, W, E
+// 	//se fechado
+// 	return(1);
+// }
