@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_line.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 15:55:27 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/02/09 14:31:54 by ratinhosujo      ###   ########.fr       */
+/*   Created: 2023/02/09 16:41:41 by ratinhosujo       #+#    #+#             */
+/*   Updated: 2023/02/09 16:41:59 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-// Returns the first line of the map :
-
-int	first_line(char *line)
+int	compare(const char *s1, const char *s2)
 {
-	int	i;
-	int	flag;
+	unsigned int	i;
 
-	i = -1;
-	flag = 0;
-	while (line[++i] != '\n')
+	i = 0;
+	while (!(s1[i] == '\0' && s2[i] == '\0'))
 	{
-		if (line[i] == '0')
-			return (0);
-		else if (line[i] == '1')
-			flag++;
-		else if (!(line[i] == '1' || line[i] == 9 || line[i] == ' '))
-			return (0);
+		if ((unsigned char)s1[i] == (unsigned char)s2[i])
+			i++;
+		else
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 	}
-	if (flag > 0)
-		return (1);
 	return (0);
 }
