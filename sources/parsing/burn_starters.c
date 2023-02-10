@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 16:19:55 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/10 16:27:34 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/10 18:49:44 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ void	starter(t_data *data)
 	}
 	if (counter == 1)
 		data->difus.starting = 0;
-	else
+	else if (counter > 2 && counter < 5)
 		data->difus.starting = counter / 2;
+	else if (counter > 4)
+		data->difus.starting = counter / 4;
 }
 
 int	burn_first_row(t_data *data)
