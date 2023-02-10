@@ -6,7 +6,7 @@
 #    By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 20:35:26 by gafreita          #+#    #+#              #
-#    Updated: 2023/02/10 18:11:08 by gafreita         ###   ########.fr        #
+#    Updated: 2023/02/10 20:19:08 by gafreita         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ clean:
 	@$(RM) $(OBJECTS)
 	@echo "$(GREEN)OBJECTS DELETED$(WHITE)"
 
-fclean:
+fclean: clean
 	@rm -f $(NAME)
 	@echo "$(GREEN)$(NAME) ERASED$(WHITE)"
 
