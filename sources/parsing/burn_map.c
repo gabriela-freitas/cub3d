@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:32:31 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/10 00:39:45 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/10 13:37:38 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,19 @@ int adjacent_burned(t_data *data, int i, int j)
 	{
 		if (i - 1 >= 0 && data->parse.map[i - 1][j] && data->parse.map[i - 1][j] == '2') //top
 			return (1);
-		else if (data->parse.map[i][j - 1] && data->parse.map[i][j - 1] == '2') //left
+		else if (i != (data->difus.size_map - 1) && data->parse.map[i][j - 1] && data->parse.map[i][j - 1] == '2') //left
 			return (1);
 		else if (data->parse.map[i][j + 1] && data->parse.map[i][j + 1] == '2') //right
 			return (1);
-		else if (data->parse.map[i + 1][j] && data->parse.map[i + 1][j] == '2') //down
+		else if (i + 1 < data->difus.size_map && data->parse.map[i + 1][j] && data->parse.map[i + 1][j] == '2') //down
 			return (1);
-		else if (data->parse.map[i + 1][j - 1] && data->parse.map[i + 1][j - 1] == '2') //down + left
+		else if (i + 1 < data->difus.size_map && data->parse.map[i + 1][j - 1] && data->parse.map[i + 1][j - 1] == '2') //down + left
 			return (1);
-		else if (data->parse.map[i + 1][j + 1] && data->parse.map[i + 1][j + 1] == '2') //down + right
+		else if (i + 1 < data->difus.size_map && data->parse.map[i + 1][j + 1] && data->parse.map[i + 1][j + 1] == '2') //down + right
 			return (1);
-		else if (i - 1 >= 0 && data->parse.map[i - 1][j - 1] && data->parse.map[i - 1][j - 1] == '2') //top + left
+		else if (i - 1 >= 0 && i != (data->difus.size_map - 1) && data->parse.map[i - 1][j - 1] && data->parse.map[i - 1][j - 1] == '2') //top + left
 			return (1);
-		else if (i - 1 >= 0 && data->parse.map[i - 1][j + 1] && data->parse.map[i - 1][j + 1] == '2') //down + left
+		else if (i - 1 >= 0 && data->parse.map[i - 1][j + 1] && data->parse.map[i - 1][j + 1] == '2') //top + right
 			return (1);
 	}
 	return (0);
@@ -94,17 +94,17 @@ int adjacent_burned2(t_data *data, int i, int j)
 			return (1);
 		else if (data->parse.map[i][j - 1] && data->parse.map[i][j - 1] == '3') //left
 			return (1);
-		else if (data->parse.map[i][j + 1] && data->parse.map[i][j + 1] == '3') //right
+		else if (i != 0 && data->parse.map[i][j + 1] && data->parse.map[i][j + 1] == '3') //right
 			return (1);
-		else if (data->parse.map[i + 1][j] && data->parse.map[i + 1][j] == '3') //down
+		else if (i + 1 < data->difus.size_map && data->parse.map[i + 1][j] && data->parse.map[i + 1][j] == '3') //down
 			return (1);
-		else if (data->parse.map[i + 1][j - 1] && data->parse.map[i + 1][j - 1] == '3') //down + left
+		else if (i + 1 < data->difus.size_map && data->parse.map[i + 1][j - 1] && data->parse.map[i + 1][j - 1] == '3') //down + left
 			return (1);
-		else if (data->parse.map[i + 1][j + 1] && data->parse.map[i + 1][j + 1] == '3') //down + right
+		else if (i + 1 < data->difus.size_map && data->parse.map[i + 1][j + 1] && data->parse.map[i + 1][j + 1] == '3') //down + right
 			return (1);
 		else if (i - 1 >= 0 && data->parse.map[i - 1][j - 1] && data->parse.map[i - 1][j - 1] == '3') //top + left
 			return (1);
-		else if (i - 1 >= 0 && data->parse.map[i - 1][j + 1] && data->parse.map[i - 1][j + 1] == '3') //down + left
+		else if (i - 1 >= 0 && data->parse.map[i - 1][j + 1] && data->parse.map[i - 1][j + 1] == '3') //top + right
 			return (1);
 	}
 	return (0);
@@ -124,6 +124,7 @@ int	burn_map(t_data *data)
 			{
 				data->parse.map[data->difus.i][data->difus.j] = '2';
 				data->difus.flag++;
+				print_map(data);
 			}
 		}
 		data->difus.i++;
@@ -153,6 +154,7 @@ int	rev_burn_map(t_data *data)
 			{
 				data->parse.map[data->difus.i][data->difus.j] = '3';
 				data->difus.flag++;
+				print_map(data);
 			}
 		}
 		data->difus.i--;

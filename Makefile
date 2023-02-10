@@ -6,7 +6,7 @@
 #    By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 20:35:26 by gafreita          #+#    #+#              #
-#    Updated: 2023/02/10 00:44:42 by ratinhosujo      ###   ########.fr        #
+#    Updated: 2023/02/10 13:39:48 by ratinhosujo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ clean:
 	@$(RM) $(OBJECTS)
 	@echo -e "$(GREEN)OBJECTS DELETED$(WHITE)"
 
-fclean:
+fclean: clean
 	@rm -f $(NAME)
 	@echo -e "\n$(GREEN)FRACTOL ERASED$(WHITE)"
 
