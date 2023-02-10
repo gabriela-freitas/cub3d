@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/09 23:49:28 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/10 14:56:31 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ typedef struct s_difus
 	int	flag;
 	int	ret;
 	int	max_i;
-	int	difusion;
+	int	first_one;
+	int	last_one;
+	int	starting;
 	int	size_map;
 } t_difus;
 
@@ -61,9 +63,9 @@ void	create_test_map(t_data *data);
 
 // burning method
 int		burn_map(t_data *data);
+int		burn_burned(t_data *data);
 int		rev_burn_map(t_data *data);
 int		burn_first_row(t_data *data);
-int		burn_last_row(t_data *data);
 int 	adjacent_burned(t_data *data, int i, int j);
 int 	adjacent_burned2(t_data *data, int i, int j);
 int		linked_line(t_data *data, int index);

@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 18:00:28 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/02/10 13:37:56 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/10 14:57:01 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,14 @@ int	one_position(t_data *data)
 
 	i = -1;
 	flag = 0;
-	printf("%d\n", i);
 	while (data->parse.map[++i])
 	{
 		j = -1;
 		while (data->parse.map[i][++j])
 		{
-			printf("%d\n", data->parse.map[i][j]);
 			if (data->parse.map[i][j] == 'N' || data->parse.map[i][j] == 'S' \
 			|| data->parse.map[i][j] == 'E' || data->parse.map[i][j] == 'W')
-			{
-				printf("entrou");
 				flag++;
-			}
 		}
 	}
 	if (flag == 1)
@@ -81,9 +76,8 @@ int	closed_map(t_data *data)
 			printf("\nBurn top to bottom has stoped.\n");
 			break ;
 		}
-		print_map(data);
 	}
-	if (!burn_last_row(data))		// burns first row
+	if (!burn_burned(data))
 		return (0);
 	data->difus.flag = 1;
 	while(data->difus.flag > 0)		// burns linked spots
