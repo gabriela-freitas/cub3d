@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:32:31 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/10 15:29:35 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/10 15:36:44 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,10 +184,6 @@ int	finding_closeness(t_data *data, int i, int j)
 				break ;
 			}
 		}
-	}
-	if (jay == j)
-	{
-		printf("jay : %d \n j : %d \n", jay, j);
 	}
 	if (data->parse.map[i][j] == '1' && jay == j)
 	{
