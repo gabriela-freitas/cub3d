@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 18:00:28 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/02/10 14:57:01 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/10 18:19:56 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ int	one_position(t_data *data)
 
 int	closed_map(t_data *data)
 {
+	int	ret;
+
 	data->difus.flag = 1;
-	if (!burn_first_row(data))		// burns first row
+	if (!burn_first_row(data))
 		return (0);
-	// if (!linked_line(data, 0))		// checks if first line linked
-	// 	return (0);
 	print_map(data);
-	while(data->difus.flag > 0)		// burns linked spots
+	while (data->difus.flag > 0)
 	{
 		if (!burn_map(data))
 		{
@@ -80,26 +80,21 @@ int	closed_map(t_data *data)
 	if (!burn_burned(data))
 		return (0);
 	data->difus.flag = 1;
-	while(data->difus.flag > 0)		// burns linked spots
+	while (data->difus.flag > 0)
 	{
-		if (!rev_burn_map(data))
-			printf("Burn bottom to top has stoped.\n");
+		ret = rev_burn_map(data);
+		if (ret == 0 || ret == 2)
+		{
+			if (ret == 0)
+			{
+				printf("Burn bottom to top has stoped.\n");
+				return (0);
+			}
+			else
+				return (1);
+		}
 	}
-	/* if (!linked_line(data, 0))		// checks if first line linked
-	{
-		printf("\n❌ top not linked.\n");
-		return (0);
-	}
-	else
-		printf("\n✅ top is linked.\n");
-	if (!linked_line(data, data->difus.size_map - 1)) // checks if last line linked
-	{
-		printf("\n❌ bot not linked\n");
-		return (0);
-	}
-	else
-		printf("✅ bot is linked.\n"); */
-	return (1);
+	return (0);
 }
 
 int	map_test(t_data *data)
@@ -115,6 +110,15 @@ int	map_test(t_data *data)
 		return (0);
 	}
 	if (!closed_map(data))
+	{
+		printf("\n❌ Map is not closed.\n");
 		return (0);
-	return(1);
+	}
+	else
+	{
+		printf("\n✅ Map is closed.");
+		printf("\n✅ All characters are legal.");
+		printf("\n✅ 1 and only player position. \n");
+	}
+	return (1);
 }
