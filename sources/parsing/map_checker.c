@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 18:00:28 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/02/10 00:52:42 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/10 13:37:56 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,11 @@ int	closed_map(t_data *data)
 	}
 	if (!burn_last_row(data))		// burns first row
 		return (0);
-	print_map(data);
 	data->difus.flag = 1;
 	while(data->difus.flag > 0)		// burns linked spots
 	{
 		if (!rev_burn_map(data))
 			printf("Burn bottom to top has stoped.\n");
-		print_map(data);
 	}
 	/* if (!linked_line(data, 0))		// checks if first line linked
 	{
