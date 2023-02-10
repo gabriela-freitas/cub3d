@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:27:51 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/10 00:54:38 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/10 18:52:05 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	create_test_map(t_data *data)
 	int count = 0;
 	int	i = -1;
 	char *line;
-	int	fd = open("/home/ratinhosujo/cub3d/maps/test_map.cub", O_RDONLY);
+	int	fd = open("/home/ratinhosujo/cub3d/maps/test_map5.cub", O_RDONLY);
 	data->parse.map = (char **)malloc(8 * sizeof(char *));
 	data->difus.size_map = 7;
 	data->parse.map[7] = NULL;
 	line = get_next_line(fd);
-	while(line != NULL)
+	while (line != NULL)
 	{
 		while (line[++i]);
 		data->parse.map[count] = (char *)malloc(i * sizeof(char));
