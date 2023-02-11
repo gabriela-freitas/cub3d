@@ -2,7 +2,8 @@
     "files.associations": {
         "cub3d.h": "c",
         "stdio.h": "c",
-        "get_next_line.h": "c"
+        "get_next_line.h": "c",
+        "stat.h": "c"
     },
     "files.autoSave": "afterDelay",
     "editor.insertSpaces": false,
@@ -12,7 +13,7 @@
     "window.zoomLevel": -0.1,
     "editor.tabSize": 4,
     "files.trimTrailingWhitespace": true,
-
+    "files.insertFinalNewline": true,
     "editor.rulers": [80],
     "workbench.colorCustomizations": {
         "editorRuler.foreground": "#383838"
