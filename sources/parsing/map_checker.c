@@ -10,31 +10,115 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-int	compare(const char *s1, const char *s2)
+int	check_char(t_data *data)
 {
-	unsigned int	i;
+	int	i;
+	int	j;
 
-	i = 0;
-	while (!(s1[i] == '\0' && s2[i] == '\0'))
+	i = -1;
+	j = 0;
+	while (data->parse.map[++i])
 	{
-		if ((unsigned char)s1[i] == (unsigned char)s2[i])
-			i++;
-		else
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		while (data->parse.map[i][j])
+		{
+			if (data->parse.map[i][j] == 'N' || data->parse.map[i][j] == 'S' \
+			|| data->parse.map[i][j] == 'E' || data->parse.map[i][j] == 'W' \
+			|| data->parse.map[i][j] == '1' || data->parse.map[i][j] == '0' \
+			|| data->parse.map[i][j] == ' ' || data->parse.map[i][j] == 9 \
+			|| data->parse.map[i][j] == '\n')
+				j++;
+			else
+				return (0);
+		}
+		j = -1;
+	}
+	return (1);
+}
+
+int	one_position(t_data *data)
+{
+	int	i;
+	int	j;
+	int	flag;
+
+	i = -1;
+	flag = 0;
+	while (data->parse.map[++i])
+	{
+		j = -1;
+		while (data->parse.map[i][++j])
+		{
+			if (data->parse.map[i][j] == 'N' || data->parse.map[i][j] == 'S' \
+			|| data->parse.map[i][j] == 'E' || data->parse.map[i][j] == 'W')
+				flag++;
+		}
+	}
+	if (flag == 1)
+		return (1);
+	else
+		return (0);
+}
+
+int	closed_map(t_data *data)
+{
+	int	ret;
+
+	data->difus.flag = 1;
+	if (!burn_first_row(data))
+		return (0);
+	print_map(data);
+	while (data->difus.flag > 0)
+	{
+		if (!burn_map(data))
+		{
+			printf("\nBurn top to bottom has stoped.\n");
+			break ;
+		}
+	}
+	if (!burn_burned(data))
+		return (0);
+	data->difus.flag = 1;
+	while (data->difus.flag > 0)
+	{
+		ret = rev_burn_map(data);
+		if (ret == 0 || ret == 2)
+		{
+			if (ret == 0)
+			{
+				printf("Burn bottom to top has stoped.\n");
+				return (0);
+			}
+			else
+				return (1);
+		}
 	}
 	return (0);
 }
 
-// int	map_test(t_data *data)
-// {
-// 	char	*first_line;
-// 	char	*last_line;
-
-
-// 	//se caract weird
-// 	//se apenas 1 : N, S, W, E
-// 	//se fechado
-// 	return(1);
-// }
+int	map_test(t_data *data)
+{
+	if (!check_char(data))
+	{
+		printf("\n❌ Wrong character used.\n");
+		return (0);
+	}
+	if (!one_position(data))
+	{
+		printf("\n❌ Not one player position.\n");
+		return (0);
+	}
+	if (!closed_map(data))
+	{
+		printf("\n❌ Map is not closed.\n");
+		return (0);
+	}
+	else
+	{
+		printf("\n✅ Map is closed.");
+		printf("\n✅ All characters are legal.");
+		printf("\n✅ 1 and only player position. \n");
+	}
+	return (1);
+}

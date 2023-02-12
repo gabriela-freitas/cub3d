@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:21:40 by gafreita          #+#    #+#             */
 /*   Updated: 2023/02/11 20:57:38 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 
 int		parse_args(char **file); //gabi
@@ -38,7 +38,12 @@ int	main(int ac, char **av)
 
 	//TO-DO: remember to check args number etc
 	if (ac > 1)
+	{
 		parse_map(av[1], &data);
+		create_test_map(&data);
+		print_map(&data);
+		map_test(&data);
+	}
 	free_split(data.parse.file);
 	// comeca a brincadeira
 	// imagens + window + por tudo com tamanhos que queremos + hooks

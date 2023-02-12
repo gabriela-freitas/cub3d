@@ -19,6 +19,3 @@ void	exit_message(char *message, t_data *data)
 	printf("%s\n", message);
 	exit(0);
 }
-
-
-

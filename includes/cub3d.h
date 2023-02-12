@@ -53,17 +53,37 @@ typedef struct s_data
 {
 	t_parse	parse;
 	int		fd[6];
+	t_difus	difus;
+	t_parse	parse;
 }	t_data;
 
 // MAP CHECKING
 
-char	*get_first_line(t_data *data);
-char	*get_last_line(t_data *data);
-int		middle_line_map(char *line);
+int		compare(const char *s1, const char *s2);
+int		first_line(char *line);
+void	exit_message(char *message);
+
+void	create_test_map(t_data *data);
+
+// burning method
+int		burn_map(t_data *data);
+int		burn_burned(t_data *data);
+int		rev_burn_map(t_data *data);
+int		burn_first_row(t_data *data);
+int		last_linked(t_data *data, int i, int j);
+int		adjacent_burned(t_data *data, int i, int j);
+int		adjacent_burned2(t_data *data, int i, int j);
+int		finding_closeness(t_data *data, int i, int j);
+
+// map checker
+int		check_char(t_data *data);
+int		one_position(t_data *data);
+int		closed_map(t_data *data);
 int		map_test(t_data *data);
 
 void	exit_message(char *message, t_data *data);
 void	read_file(char *file_name, t_data *data); //gabi
 void	get_file_info(t_data *data);
+void	print_map(t_data *data);
 
 #endif
