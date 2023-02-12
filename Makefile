@@ -22,7 +22,7 @@ CFLAGS = -Wall -Wextra -Werror $(INCLUDES)
 RM = rm -f
 SOURCES = $(wildcard sources/*/*.c) $(wildcard sources/*.c) $(wildcard libft/*.c)  $(wildcard get_next_line/*.c)
 OBJECTS = $(SOURCES:.c=.o)
-LDLIBS = -g -fsanitize=address -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm
+LDLIBS = -g -fsanitize=address #-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm
 BLUE = \033[34m
 YELL = \033[33m
 WHITE = \033[0m

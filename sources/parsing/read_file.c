@@ -14,6 +14,8 @@
 
 static void	fill_map(int fd, int i, t_data *data);
 static int	first_line(char *line);
+static void	check_prefix(char **line, t_data *data);
+static int	create_rgb(char *rgb, t_data *data);
 
 /*Reads the file and puts its content in
 	data->parse.file
@@ -95,7 +97,7 @@ void	get_file_info(t_data *data)
 	aux = data->parse.file;
 	while (aux != data->parse.map)
 	{
-		if (!is_empty_line(*(aux++)))
+		if (!is_empty_line(*(aux)))
 		{
 			line = ft_split(*aux, ' ');
 			if (!line[2])
@@ -107,16 +109,17 @@ void	get_file_info(t_data *data)
 			}
 			free_split(line);
 		}
+		aux++;
 	}
 }
 
-static int	check_prefix(char **line, t_data *data)
+static void	check_prefix(char **line, t_data *data)
 {
-	static char *prefix_list[5] = {"NO", "SO", "WE", "EA", "F", "C"};
+	static char *prefix_list[6] = {"NO", "SO", "WE", "EA", "F", "C"};
 	int	i;
 
 	i = -1;
-	while (++i < 5)
+	while (++i < 6)
 	{
 		if (!ft_strncmp(prefix_list[i], line[0], ft_strlen(prefix_list[i])))
 		{
@@ -124,15 +127,38 @@ static int	check_prefix(char **line, t_data *data)
 			{
 				data->fd[i] = open(line[1], O_RDONLY);
 				if (data->fd[i] == -1)
-					exit_message("Map file not found", data);
+					printf("file not found %s\n", line[0]);
+				//exit_message("file not found", data);
 			}
-			// else
-			// 	//add to rgbd
+			else
+			{
+				data->fd[i] = create_rgb(line[1], data);
+				printf("code %d\n", data->fd[i]);
+				if (data->fd[i] == -1)
+					exit_message("invalid rgb code", data);
+			}
 		}
 	}
 }
 
-// int	create_trgb(int t, int r, int g, int b)
-// {
-// 	return (t << 24 | r << 16 | g << 8 | b);
-// }
+static int	create_rgb(char *rgb, t_data *data)
+{
+	long int	r;
+	long int	g;
+	long int	b;
+	char		**split;
+
+	split = ft_split(rgb, ',');
+	if (split[3])
+	{
+		free_split(split);
+		exit_message("invalid map format", data);
+	}
+	r = ft_atol(split[0]);
+	g = ft_atol(split[1]);
+	b = ft_atol(split[2]);
+	free_split(split);
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		return (-1);
+	return (0 << 24 | (int)r << 16 | (int)g << 8 | (int)b);
+}

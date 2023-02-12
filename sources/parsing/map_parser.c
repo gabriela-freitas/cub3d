@@ -15,7 +15,7 @@
 /*Frees the allocated memory and exits the program*/
 void	exit_message(char *message, t_data *data)
 {
-	free_split(data->parse.map);
+	free_split(data->parse.file);
 	printf("%s\n", message);
 	exit(0);
 }

@@ -64,5 +64,6 @@ int		map_test(t_data *data);
 
 void	exit_message(char *message, t_data *data);
 void	read_file(char *file_name, t_data *data); //gabi
+void	get_file_info(t_data *data);
 
 #endif

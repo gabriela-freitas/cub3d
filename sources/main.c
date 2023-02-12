@@ -19,7 +19,7 @@ int		check_map(char **map); //diogo
 void	parse_map(char *file_name, t_data *data)
 {
 	read_file(file_name, data);
-	get_files_info(data);
+	get_file_info(data);
 	// int i;
 	// i = -1;
 	// while (data->parse.file[++i])
