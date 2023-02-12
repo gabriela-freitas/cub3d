@@ -16,7 +16,7 @@ NAME = cub3d
 
 SRC_PATH = sources
 OBJECTS_NAME = $(SRC_NAME:.c=.o)
-CC = gcc
+CC = cc
 INCLUDES = -I /usr/local/include -I ./includes/ -Imlx_linux
 CFLAGS = -Wall -Wextra -Werror $(INCLUDES)
 RM = rm -f
@@ -34,15 +34,16 @@ all: $(NAME)
 	@$(CC) $(CFLAGS) -O3 -c $< -o $@
 
 $(NAME): $(OBJECTS)
-	-@$(CC) $(OBJECTS) $(LDLIBS) -o $(NAME)
+	@$(CC) $(OBJECTS) $(LDLIBS) -o $(NAME)
+	@echo "$(GREEN)$(NAME) is ready to use$(WHITE)"
 
 clean:
 	@$(RM) $(OBJECTS)
-	@echo -e "$(GREEN)OBJECTS DELETED$(WHITE)"
+	@echo "$(GREEN)OBJECTS DELETED$(WHITE)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo -e "\n$(GREEN)FRACTOL ERASED$(WHITE)"
+	@echo "$(GREEN)$(NAME) ERASED$(WHITE)"
 
 re: fclean all
 

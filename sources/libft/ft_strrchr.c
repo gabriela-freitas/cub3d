@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: gafreita <gafreita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 19:27:51 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/08 21:34:30 by gafreita         ###   ########.fr       */
+/*   Created: 2022/02/20 23:08:06 by gafreita          #+#    #+#             */
+/*   Updated: 2022/03/03 21:09:18 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-/*Frees the allocated memory and exits the program*/
-void	exit_message(char *message, t_data *data)
+char	*ft_strrchr(const char *s, int c)
 {
-	free_split(data->parse.file);
-	printf("%s\n", message);
-	exit(0);
+	int	i;
+	int	hold;
+
+	hold = -1;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char) c)
+			hold = i;
+		i ++;
+	}
+	if (hold >= 0)
+		return ((char *)&s[hold]);
+	if (c == 0)
+		return ((char *)&s[i]);
+	return (0);
 }

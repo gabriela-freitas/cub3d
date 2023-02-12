@@ -1,13 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.c                                            :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 20:28:57 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/07 21:54:50 by gafreita         ###   ########.fr       */
+/*   Created: 2022/08/02 17:55:23 by gafreita          #+#    #+#             */
+/*   Updated: 2023/02/11 18:50:29 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
+
+int	ft_isspace(char c)
+{
+	if ((c >= 9 && c <= 13) || c == ' ')
+		return (1);
+	else
+		return (0);
+}
+
+int	is_empty_line(char *str)
+{
+	if (!str || !(*str))
+		return (1);
+	while (*(str++) && ft_isspace(*(str - 1)))
+		;
+	if (!(*str))
+		return (1);
+	else
+		return (0);
+}

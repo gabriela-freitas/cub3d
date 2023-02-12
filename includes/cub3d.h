@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
+/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/10 17:02:09 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/11 21:18:32 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,28 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-
+# include "libft.h"
 # include "../get_next_line/get_next_line.h"
 
 # define TRUE 1
 # define FALSE 0
+
+enum e_keys{
+	key_W = 119,
+	key_S = 115,
+	key_A = 97,
+	key_D = 100,
+	key_ESC = 65307
+};
+
+enum e_prefix{
+	NO,
+	SO,
+	WE,
+	EA,
+	F,
+	C
+};
 
 typedef struct s_difus
 {
@@ -42,22 +59,19 @@ typedef struct s_parsing
 {
 	char	**file;
 	char	**map;
+	int		size_map;
 }	t_parse;
 
 typedef struct s_data
 {
-	t_difus	difus;
 	t_parse	parse;
-	char	*no;
-
+	int		fd[6];
+	t_difus	difus;
 }	t_data;
 
 // MAP CHECKING
 
 int		compare(const char *s1, const char *s2);
-int		first_line(char *line);
-void	exit_message(char *message);
-
 void	create_test_map(t_data *data);
 
 // burning method
@@ -75,6 +89,10 @@ int		check_char(t_data *data);
 int		one_position(t_data *data);
 int		closed_map(t_data *data);
 int		map_test(t_data *data);
+
+void	exit_message(char *message, t_data *data);
+void	read_file(char *file_name, t_data *data); //gabi
+void	get_file_info(t_data *data);
 void	print_map(t_data *data);
 
 #endif

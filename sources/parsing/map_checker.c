@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
+/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 18:00:28 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/02/10 18:19:56 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/08 21:40:57 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

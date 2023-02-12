@@ -6,31 +6,46 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:21:40 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/10 18:12:18 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/11 20:57:38 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-//char	**read_file(char *file_path); //gabi
-//int		parse_args(char **file); //gabi
-//int		check_map(char **map); //diogo
 
-/* void	parse_map(t_data *data)
+int		parse_args(char **file); //gabi
+int		check_map(char **map); //diogo
+
+void	parse_map(char *file_name, t_data *data)
 {
-	// vai receber **read_file
-	// vai receber parse_args
-	// vai receber check_map
-} */
+	read_file(file_name, data);
+	get_file_info(data);
+	// int i;
+	// i = -1;
+	// while (data->parse.file[++i])
+	// 	printf("%s", data->parse.file[i]);
+	// i = -1;
+	// printf("\n#################################\n\n");
+	// while (data->parse.map[++i])
+	// 	printf("%s", data->parse.map[i]);
+	// printf("\n#################################\n\n%d", data->parse.size_map);
+}
 
-int	main(void)
+
+int	main(int ac, char **av)
 {
 	t_data	data;
 
-	create_test_map(&data);
-	print_map(&data);
-	map_test(&data);
-}
+	//TO-DO: remember to check args number etc
+	if (ac > 1)
+	{
+		parse_map(av[1], &data);
+		create_test_map(&data);
+		print_map(&data);
+		map_test(&data);
+	}
+	free_split(data.parse.file);
 	// comeca a brincadeira
 	// imagens + window + por tudo com tamanhos que queremos + hooks
 	// matematica para projectar
+}

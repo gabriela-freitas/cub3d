@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 19:27:51 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/08 21:34:30 by gafreita         ###   ########.fr       */
+/*   Created: 2022/01/25 22:38:48 by gafreita          #+#    #+#             */
+/*   Updated: 2022/07/21 14:57:35 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-/*Frees the allocated memory and exits the program*/
-void	exit_message(char *message, t_data *data)
+size_t	ft_strlen(const char *str)
 {
-	free_split(data->parse.file);
-	printf("%s\n", message);
-	exit(0);
+	size_t	cont;
+
+	if (!str)
+		return (0);
+	cont = 0;
+	while (str[cont] != '\0')
+		cont ++;
+	return (cont);
 }
