@@ -37,14 +37,14 @@ void	read_file(char *file_name, t_data *data)
 	data->parse.map = data->parse.file;
 	while (!first_line(*data->parse.map))
 		data->parse.map++;
-	data->parse.height = 0;
+	data->parse.size_map = 0;
 	aux = data->parse.map;
 	while (*(aux++))
 	{
 		if (!is_empty_line(*(aux - 1)))
 		{
 			printf("%s", *(aux - 1));
-			data->parse.height++;
+			data->parse.size_map++;
 		}
 	}
 }

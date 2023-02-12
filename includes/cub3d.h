@@ -59,7 +59,7 @@ typedef struct s_parsing
 {
 	char	**file;
 	char	**map;
-	int		height;
+	int		size_map;
 }	t_parse;
 
 typedef struct s_data

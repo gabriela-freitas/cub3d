@@ -28,7 +28,7 @@ void	parse_map(char *file_name, t_data *data)
 	// printf("\n#################################\n\n");
 	// while (data->parse.map[++i])
 	// 	printf("%s", data->parse.map[i]);
-	printf("\n#################################\n\n%d", data->parse.height);
+	// printf("\n#################################\n\n%d", data->parse.size_map);
 }
 
 
