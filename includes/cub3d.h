@@ -44,6 +44,8 @@ enum e_prefix{
 
 typedef struct s_difus
 {
+	int	player_i;
+	int	player_j;
 	int	i;
 	int	j;
 	int	flag;

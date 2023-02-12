@@ -34,33 +34,6 @@ void	starter(t_data *data)
 		data->difus.starting = counter / 4;
 }
 
-int	burn_first_row(t_data *data)
-{
-	int	j;
-	int	flag;
-	int	count;
-
-	j = -1;
-	flag = 0;
-	count = 0;
-	starter(data);
-	while (data->parse.map[data->difus.i][++j])
-	{
-		if (data->parse.map[data->difus.i][j] == '1' && \
-		count < data->difus.starting)
-			count++;
-		else if (data->parse.map[data->difus.i][j] == '1')
-		{
-			data->parse.map[data->difus.i][j]++;
-			flag++;
-		}
-	}
-	data->difus.max_i++;
-	if (flag > 0)
-		return (1);
-	return (0);
-}
-
 int	burn_burned(t_data *data)
 {
 	int	j;

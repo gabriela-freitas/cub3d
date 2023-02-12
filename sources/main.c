@@ -40,11 +40,12 @@ int	main(int ac, char **av)
 	if (ac > 1)
 	{
 		parse_map(av[1], &data);
-		create_test_map(&data);
 		print_map(&data);
+        // gabi o size_map nao esta bem atualizado
+        data.difus.size_map = 7;
 		map_test(&data);
 	}
-	free_split(data.parse.file);
+	//free_split(data.parse.file);
 	// comeca a brincadeira
 	// imagens + window + por tudo com tamanhos que queremos + hooks
 	// matematica para projectar

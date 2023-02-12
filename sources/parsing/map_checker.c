@@ -52,7 +52,11 @@ int	one_position(t_data *data)
 		{
 			if (data->parse.map[i][j] == 'N' || data->parse.map[i][j] == 'S' \
 			|| data->parse.map[i][j] == 'E' || data->parse.map[i][j] == 'W')
+			{
+				data->difus.player_i = i;
+                data->difus.player_j = j;
 				flag++;
+			}
 		}
 	}
 	if (flag == 1)
@@ -61,40 +65,63 @@ int	one_position(t_data *data)
 		return (0);
 }
 
+int check_case(t_data *data, int i, int j)
+{
+	if (i < 0 || j < 0 || i >= data->difus.size_map)
+		return (0);
+	if (data->parse.map[i][j] && data->parse.map[i][j] == '0')
+		return (1);
+	else
+		return  (0);
+}
+
+
+
+int burn_adj_posits(t_data *data, int p_i, int p_j)
+{
+	if (p_j - 1 >= 0 && data->parse.map[p_i][p_j - 1] == '0')    //left
+        data->parse.map[p_i][p_j - 1] = 'a';
+    else if (p_j - 1 >= 0 && data->parse.map[p_i][p_j - 1] != '1')
+        return (0);
+    if (data->parse.map[p_i][p_j + 1] && data->parse.map[p_i][p_j + 1] == '0')  //right
+        data->parse.map[p_i][p_j + 1] = 'a';
+    else if (data->parse.map[p_i][p_j + 1] && data->parse.map[p_i][p_j + 1] != '1')
+        return (0);
+    if (p_i - 1 >= 0 && data->parse.map[p_i - 1][p_j] && data->parse.map[p_i - 1][p_j] == '0') //top
+        data->parse.map[p_i - 1][p_j] = 'a';
+    else if (p_i - 1 >= 0 && data->parse.map[p_i - 1][p_j] && data->parse.map[p_i - 1][p_j] != '1')
+        return (0);
+    if (data->parse.map[p_i + 1][p_j] && data->parse.map[p_i + 1][p_j] == '0') //bot
+        data->parse.map[p_i + 1][p_j] = 'a';
+    else if (data->parse.map[p_i + 1][p_j] && data->parse.map[p_i + 1][p_j] != '1')
+        return (0);
+    data->difus.flag++;
+    return (1);
+}
+
 int	closed_map(t_data *data)
 {
-	int	ret;
+    int	p_i;
+    int	p_j;
 
-	data->difus.flag = 1;
-	if (!burn_first_row(data))
-		return (0);
-	print_map(data);
+    data->difus.flag = 1;
+    p_i = data->difus.player_i;
+    p_j = data->difus.player_j;
+    if (!burn_adj_posits(data, p_i, p_j))
+    {
+        printf ("Invalid Map.\n");
+        return (0);
+    }
+    print_map(data);
 	while (data->difus.flag > 0)
 	{
 		if (!burn_map(data))
 		{
 			printf("\nBurn top to bottom has stoped.\n");
-			break ;
+			return (0);
 		}
 	}
-	if (!burn_burned(data))
-		return (0);
-	data->difus.flag = 1;
-	while (data->difus.flag > 0)
-	{
-		ret = rev_burn_map(data);
-		if (ret == 0 || ret == 2)
-		{
-			if (ret == 0)
-			{
-				printf("Burn bottom to top has stoped.\n");
-				return (0);
-			}
-			else
-				return (1);
-		}
-	}
-	return (0);
+    return (1);
 }
 
 int	map_test(t_data *data)

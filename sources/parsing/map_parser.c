@@ -12,6 +12,27 @@
 
 #include "cub3d.h"
 
+void	print_map(t_data *data)
+{
+	int	i = -1;
+	int	j = -1;
+
+	printf("\n\n");
+	while (data->parse.map[++i])
+	{
+		while (data->parse.map[i][++j])
+		{
+			if (data->parse.map[i][j] == 'a')
+				printf("\033[102m\033[1m%c\033[0m", data->parse.map[i][j]);
+			else if (data->parse.map[i][j] == 'b')
+				printf("\033[101m\033[1m%c\033[0m", data->parse.map[i][j]);
+			else
+				printf("%c", data->parse.map[i][j]);
+		}
+		j = -1;
+	}
+}
+
 /*Frees the allocated memory and exits the program*/
 void	exit_message(char *message, t_data *data)
 {
