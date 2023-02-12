@@ -42,6 +42,19 @@ enum e_prefix{
 	C
 };
 
+typedef struct s_difus
+{
+	int	i;
+	int	j;
+	int	flag;
+	int	ret;
+	int	max_i;
+	int	first_one;
+	int	last_one;
+	int	starting;
+	int	size_map;
+}	t_difus;
+
 typedef struct s_parsing
 {
 	char	**file;
@@ -54,15 +67,11 @@ typedef struct s_data
 	t_parse	parse;
 	int		fd[6];
 	t_difus	difus;
-	t_parse	parse;
 }	t_data;
 
 // MAP CHECKING
 
 int		compare(const char *s1, const char *s2);
-int		first_line(char *line);
-void	exit_message(char *message);
-
 void	create_test_map(t_data *data);
 
 // burning method
