@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:21:40 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/11 20:57:38 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/13 03:13:24 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	main(int ac, char **av)
 	if (ac > 1)
 	{
 		parse_map(av[1], &data);
-		print_map(&data);
+		//print_map(&data);
         // gabi o size_map nao esta bem atualizado
-        data.difus.size_map = 7;
+        data.difus.size_map = 14;
 		map_test(&data);
 	}
 	//free_split(data.parse.file);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:55:27 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/02/11 21:21:07 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/13 02:49:15 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static int	create_rgb(char *rgb, t_data *data);
 	data->parse.file
 	and the first line of the map in
 	data->parse.map*/
+
 void	read_file(char *file_name, t_data *data)
 {
 	int		fd;
@@ -50,6 +51,7 @@ void	read_file(char *file_name, t_data *data)
 }
 
 // Check if it's the first line of the map
+
 static int	first_line(char *line)
 {
 	int	i;
@@ -73,6 +75,7 @@ static int	first_line(char *line)
 }
 
 /*Read from the file and fill the data->parse.map (char **) recursively*/
+
 static void	fill_map(int fd, int i, t_data *data)
 {
 	char	*line;

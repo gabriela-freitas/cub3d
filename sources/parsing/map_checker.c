@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 18:00:28 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/02/08 21:40:57 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/13 03:12:35 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,54 +65,47 @@ int	one_position(t_data *data)
 		return (0);
 }
 
-int check_case(t_data *data, int i, int j)
+
+int	burn_adj_posits(t_data *data, int p_i, int p_j)
 {
-	if (i < 0 || j < 0 || i >= data->difus.size_map)
+	if (p_j - 1 >= 0 && data->parse.map[p_i][p_j - 1] == '0')
+		data->parse.map[p_i][p_j - 1] = 'a';
+	else if (p_j - 1 >= 0 && data->parse.map[p_i][p_j - 1] != '1')
 		return (0);
-	if (data->parse.map[i][j] && data->parse.map[i][j] == '0')
-		return (1);
-	else
-		return  (0);
-}
-
-
-
-int burn_adj_posits(t_data *data, int p_i, int p_j)
-{
-	if (p_j - 1 >= 0 && data->parse.map[p_i][p_j - 1] == '0')    //left
-        data->parse.map[p_i][p_j - 1] = 'a';
-    else if (p_j - 1 >= 0 && data->parse.map[p_i][p_j - 1] != '1')
-        return (0);
-    if (data->parse.map[p_i][p_j + 1] && data->parse.map[p_i][p_j + 1] == '0')  //right
-        data->parse.map[p_i][p_j + 1] = 'a';
-    else if (data->parse.map[p_i][p_j + 1] && data->parse.map[p_i][p_j + 1] != '1')
-        return (0);
-    if (p_i - 1 >= 0 && data->parse.map[p_i - 1][p_j] && data->parse.map[p_i - 1][p_j] == '0') //top
-        data->parse.map[p_i - 1][p_j] = 'a';
-    else if (p_i - 1 >= 0 && data->parse.map[p_i - 1][p_j] && data->parse.map[p_i - 1][p_j] != '1')
-        return (0);
-    if (data->parse.map[p_i + 1][p_j] && data->parse.map[p_i + 1][p_j] == '0') //bot
-        data->parse.map[p_i + 1][p_j] = 'a';
-    else if (data->parse.map[p_i + 1][p_j] && data->parse.map[p_i + 1][p_j] != '1')
-        return (0);
-    data->difus.flag++;
-    return (1);
+	if (data->parse.map[p_i][p_j + 1] && data->parse.map[p_i][p_j + 1] == '0')
+		data->parse.map[p_i][p_j + 1] = 'a';
+	else if (data->parse.map[p_i][p_j + 1] && \
+	data->parse.map[p_i][p_j + 1] != '1')
+		return (0);
+	if (p_i - 1 >= 0 && data->parse.map[p_i - 1][p_j] \
+	&& data->parse.map[p_i - 1][p_j] == '0')
+		data->parse.map[p_i - 1][p_j] = 'a';
+	else if (p_i - 1 >= 0 && data->parse.map[p_i - 1][p_j] \
+	&& data->parse.map[p_i - 1][p_j] != '1')
+		return (0);
+	if (data->parse.map[p_i + 1][p_j] && \
+	data->parse.map[p_i + 1][p_j] == '0')
+		data->parse.map[p_i + 1][p_j] = 'a';
+	else if (data->parse.map[p_i + 1][p_j] && \
+	data->parse.map[p_i + 1][p_j] != '1')
+		return (0);
+	data->difus.flag++;
+	return (1);
 }
 
 int	closed_map(t_data *data)
 {
-    int	p_i;
-    int	p_j;
+	int	p_i;
+	int	p_j;
 
-    data->difus.flag = 1;
-    p_i = data->difus.player_i;
-    p_j = data->difus.player_j;
-    if (!burn_adj_posits(data, p_i, p_j))
-    {
-        printf ("Invalid Map.\n");
-        return (0);
-    }
-    print_map(data);
+	data->difus.flag = 1;
+	p_i = data->difus.player_i;
+	p_j = data->difus.player_j;
+	if (!burn_adj_posits(data, p_i, p_j))
+	{
+		printf ("Invalid Map.\n");
+		return (0);
+	}
 	while (data->difus.flag > 0)
 	{
 		if (!burn_map(data))
@@ -121,7 +114,8 @@ int	closed_map(t_data *data)
 			return (0);
 		}
 	}
-    return (1);
+	print_map(data);
+	return (1);
 }
 
 int	map_test(t_data *data)
