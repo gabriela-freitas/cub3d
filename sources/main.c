@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:21:40 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/13 03:13:24 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/13 23:41:55 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,35 @@
 
 
 int		parse_args(char **file); //gabi
-int		check_map(char **map); //diogo
 
-void	parse_map(char *file_name, t_data *data)
+int	parse_map(char *file_name, t_data *data)
 {
+	int	i;
+
+	i = -1;
+	data->map.map_height = 0;
 	read_file(file_name, data);
 	get_file_info(data);
-	// int i;
-	// i = -1;
-	// while (data->parse.file[++i])
-	// 	printf("%s", data->parse.file[i]);
-	// i = -1;
-	// printf("\n#################################\n\n");
-	// while (data->parse.map[++i])
-	// 	printf("%s", data->parse.map[i]);
-	// printf("\n#################################\n\n%d", data->parse.size_map);
-}
+	//necessario saber a cor de cada lado ou textura
+	data->draw.n = 255; //blue
+	data->draw.s = 255*65536; //red
+	data->draw.e = 255*255; // green
+	data->draw.w = 255*65536 + 255; //pink
+	while (data->map.map[++i])
+		data->map.map_height++;
 
+	if (!map_test(data))
+		return (0);
+	return (1);
+}
 
 int	main(int ac, char **av)
 {
 	t_data	data;
 
-	//TO-DO: remember to check args number etc
 	if (ac > 1)
 	{
 		parse_map(av[1], &data);
-		//print_map(&data);
-        // gabi o size_map nao esta bem atualizado
-        data.difus.size_map = 14;
-		map_test(&data);
+		mathematics(&data);
 	}
-	//free_split(data.parse.file);
-	// comeca a brincadeira
-	// imagens + window + por tudo com tamanhos que queremos + hooks
-	// matematica para projectar
 }

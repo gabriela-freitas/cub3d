@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:27:51 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/08 21:34:30 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:44:54 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,24 @@
 
 void	print_map(t_data *data)
 {
-	int	i = -1;
-	int	j = -1;
+	int	i;
+	int	j;
 
+	i = -1;
+	j = -1;
 	printf("\n\n");
-	while (data->parse.map[++i])
+	while (data->map.map[++i])
 	{
-		while (data->parse.map[i][++j])
+		while (data->map.map[i][++j])
 		{
-			if (data->parse.map[i][j] == 'a')
-				printf("\033[102m\033[1m%c\033[0m", data->parse.map[i][j]);
-			else if (data->parse.map[i][j] == 'b')
-				printf("\033[101m\033[1m%c\033[0m", data->parse.map[i][j]);
+			if (data->map.map[i][j] == 'a')
+				printf("\033[102m\033[1m%c\033[0m", data->map.map[i][j]);
+			else if (data->map.map[i][j] == 'b')
+				printf("\033[101m\033[1m%c\033[0m", data->map.map[i][j]);
+			else if (data->map.map[i][j] == '0')
+				printf("\033[104m\033[1m%c\033[0m", data->map.map[i][j]);
 			else
-				printf("%c", data->parse.map[i][j]);
+				printf("%c", data->map.map[i][j]);
 		}
 		j = -1;
 	}

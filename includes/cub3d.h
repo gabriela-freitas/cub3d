@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/11 21:18:32 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/13 23:49:16 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@
 
 # define TRUE 1
 # define FALSE 0
+#ifdef INFINITY
+/* INFINITY is supported */
+#endif
+
+enum e_window{
+	Width = 800,
+	Height = 600
+};
 
 enum e_keys{
 	key_W = 119,
@@ -44,57 +52,105 @@ enum e_prefix{
 
 typedef struct s_difus
 {
-	int	player_i;
-	int	player_j;
 	int	i;
 	int	j;
 	int	flag;
-	int	ret;
-	int	max_i;
-	int	first_one;
-	int	last_one;
-	int	starting;
-	int	size_map;
 }	t_difus;
+
+typedef struct s_draw
+{
+	int		n;
+	int		s;
+	int		w;
+	int		e;
+	char	*n_texture;
+	char	*s_texture;
+	char	*w_texture;
+	char	*e_texture;
+}	t_draw;
+
+typedef struct s_raycast
+{
+	int		hit;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	int		side_hit;
+	int		line_height;
+	int		wall_height;
+	int		draw_start;
+	int		draw_end;
+	double	d_x;
+	double	d_y;
+	double	cam_x;
+	double	ray_x;
+	double	ray_y;
+	double	fov_x;
+	double	fov_y;
+	double	dist_x;
+	double	dist_y;
+	double	p_dir_x;
+	double	p_dir_y;
+	double	cam_plane_dist;
+}	t_raycast;
+
+typedef struct s_player
+{
+	int			player_i;
+	int			player_j;
+	double		p_x;
+	double		p_y;
+	t_raycast	rcast;
+
+}	t_player;
+
+typedef struct s_map
+{
+	char	**map;
+	int		map_height;
+}	t_map;
+
+typedef struct s_timers
+{
+	int	time;
+	int	old_time;
+}	t_timers;
 
 typedef struct s_parsing
 {
 	char	**file;
-	char	**map;
-	int		size_map;
 }	t_parse;
 
 typedef struct s_data
 {
-	t_parse	parse;
-	int		fd[6];
-	t_difus	difus;
+	int			fd[6];
+	t_player	p;
+	t_map		map;
+	t_difus		difus;
+	t_parse		parse;
+	t_timers	timers;
+	t_draw		draw;
 }	t_data;
 
-// MAP CHECKING
-
 int		compare(const char *s1, const char *s2);
-void	create_test_map(t_data *data);
 
-// burning method
+// MAP CHECKER - BURNING METHOD
 int		burn_map(t_data *data);
-int		burn_burned(t_data *data);
-int		rev_burn_map(t_data *data);
-int		burn_first_row(t_data *data);
-int		last_linked(t_data *data, int i, int j);
 int		adjacent_burned(t_data *data, int i, int j);
-int		adjacent_burned2(t_data *data, int i, int j);
-int		finding_closeness(t_data *data, int i, int j);
-
-// map checker
-int		check_char(t_data *data);
-int		one_position(t_data *data);
-int		closed_map(t_data *data);
 int		map_test(t_data *data);
 
 void	exit_message(char *message, t_data *data);
 void	read_file(char *file_name, t_data *data); //gabi
 void	get_file_info(t_data *data);
 void	print_map(t_data *data);
+
+// MATHEMATICS
+void	init_direction(t_data *data);
+void	start_vars(t_data *data, int x, int nbr_rays);
+void	calc_vars(t_data *data);
+void	calc_draw_vars(t_data *data);
+void	calc_steps(t_data *data);
+void	mathematics(t_data *data);
 
 #endif

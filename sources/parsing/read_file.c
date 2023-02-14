@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:55:27 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/02/13 02:49:15 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/13 15:53:17 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	create_rgb(char *rgb, t_data *data);
 /*Reads the file and puts its content in
 	data->parse.file
 	and the first line of the map in
-	data->parse.map*/
+	data->map.map*/
 
 void	read_file(char *file_name, t_data *data)
 {
@@ -35,18 +35,14 @@ void	read_file(char *file_name, t_data *data)
 	if (fd == -1)
 		exit_message("Map file not found", data);
 	fill_map(fd, 0, data);
-	data->parse.map = data->parse.file;
-	while (!first_line(*data->parse.map))
-		data->parse.map++;
-	data->parse.size_map = 0;
-	aux = data->parse.map;
+	data->map.map = data->parse.file;
+	while (!first_line(*data->map.map))
+		data->map.map++;
+	aux = data->map.map;
 	while (*(aux++))
 	{
 		if (!is_empty_line(*(aux - 1)))
-		{
 			printf("%s", *(aux - 1));
-			data->parse.size_map++;
-		}
 	}
 }
 
@@ -74,7 +70,7 @@ static int	first_line(char *line)
 		return (0);
 }
 
-/*Read from the file and fill the data->parse.map (char **) recursively*/
+/*Read from the file and fill the data->map.map (char **) recursively*/
 
 static void	fill_map(int fd, int i, t_data *data)
 {
@@ -98,7 +94,7 @@ void	get_file_info(t_data *data)
 	char	**line;
 
 	aux = data->parse.file;
-	while (aux != data->parse.map)
+	while (aux != data->map.map)
 	{
 		if (!is_empty_line(*(aux)))
 		{
@@ -118,8 +114,8 @@ void	get_file_info(t_data *data)
 
 static void	check_prefix(char **line, t_data *data)
 {
-	static char *prefix_list[6] = {"NO", "SO", "WE", "EA", "F", "C"};
-	int	i;
+	int			i;
+	static char	*prefix_list[6] = {"NO", "SO", "WE", "EA", "F", "C"};
 
 	i = -1;
 	while (++i < 6)
