@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 18:00:28 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/02/08 21:40:57 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/13 17:49:06 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ int	check_char(t_data *data)
 
 	i = -1;
 	j = 0;
-	while (data->parse.map[++i])
+	while (data->map.map[++i])
 	{
-		while (data->parse.map[i][j])
+		while (data->map.map[i][j])
 		{
-			if (data->parse.map[i][j] == 'N' || data->parse.map[i][j] == 'S' \
-			|| data->parse.map[i][j] == 'E' || data->parse.map[i][j] == 'W' \
-			|| data->parse.map[i][j] == '1' || data->parse.map[i][j] == '0' \
-			|| data->parse.map[i][j] == ' ' || data->parse.map[i][j] == 9 \
-			|| data->parse.map[i][j] == '\n')
+			if (data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S' \
+			|| data->map.map[i][j] == 'E' || data->map.map[i][j] == 'W' \
+			|| data->map.map[i][j] == '1' || data->map.map[i][j] == '0' \
+			|| data->map.map[i][j] == ' ' || data->map.map[i][j] == 9 \
+			|| data->map.map[i][j] == '\n')
 				j++;
 			else
 				return (0);
@@ -45,14 +45,18 @@ int	one_position(t_data *data)
 
 	i = -1;
 	flag = 0;
-	while (data->parse.map[++i])
+	while (data->map.map[++i])
 	{
 		j = -1;
-		while (data->parse.map[i][++j])
+		while (data->map.map[i][++j])
 		{
-			if (data->parse.map[i][j] == 'N' || data->parse.map[i][j] == 'S' \
-			|| data->parse.map[i][j] == 'E' || data->parse.map[i][j] == 'W')
+			if (data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S' \
+			|| data->map.map[i][j] == 'E' || data->map.map[i][j] == 'W')
+			{
+				data->p.player_i = i;
+				data->p.player_j = j;
 				flag++;
+			}
 		}
 	}
 	if (flag == 1)
@@ -61,40 +65,57 @@ int	one_position(t_data *data)
 		return (0);
 }
 
+
+int	burn_adj_posits(t_data *data, int p_i, int p_j)
+{
+	if (p_j - 1 >= 0 && data->map.map[p_i][p_j - 1] == '0')
+		data->map.map[p_i][p_j - 1] = 'a';
+	else if (p_j - 1 >= 0 && data->map.map[p_i][p_j - 1] != '1')
+		return (0);
+	if (data->map.map[p_i][p_j + 1] && data->map.map[p_i][p_j + 1] == '0')
+		data->map.map[p_i][p_j + 1] = 'a';
+	else if (data->map.map[p_i][p_j + 1] && \
+	data->map.map[p_i][p_j + 1] != '1')
+		return (0);
+	if (p_i - 1 >= 0 && data->map.map[p_i - 1][p_j] \
+	&& data->map.map[p_i - 1][p_j] == '0')
+		data->map.map[p_i - 1][p_j] = 'a';
+	else if (p_i - 1 >= 0 && data->map.map[p_i - 1][p_j] \
+	&& data->map.map[p_i - 1][p_j] != '1')
+		return (0);
+	if (data->map.map[p_i + 1][p_j] && \
+	data->map.map[p_i + 1][p_j] == '0')
+		data->map.map[p_i + 1][p_j] = 'a';
+	else if (data->map.map[p_i + 1][p_j] && \
+	data->map.map[p_i + 1][p_j] != '1')
+		return (0);
+	data->difus.flag++;
+	return (1);
+}
+
 int	closed_map(t_data *data)
 {
-	int	ret;
+	int	p_i;
+	int	p_j;
 
 	data->difus.flag = 1;
-	if (!burn_first_row(data))
+	p_i = data->p.player_i;
+	p_j = data->p.player_j;
+	if (!burn_adj_posits(data, p_i, p_j))
+	{
+		printf ("Invalid Map.\n");
 		return (0);
-	print_map(data);
+	}
 	while (data->difus.flag > 0)
 	{
 		if (!burn_map(data))
 		{
 			printf("\nBurn top to bottom has stoped.\n");
-			break ;
+			return (0);
 		}
 	}
-	if (!burn_burned(data))
-		return (0);
-	data->difus.flag = 1;
-	while (data->difus.flag > 0)
-	{
-		ret = rev_burn_map(data);
-		if (ret == 0 || ret == 2)
-		{
-			if (ret == 0)
-			{
-				printf("Burn bottom to top has stoped.\n");
-				return (0);
-			}
-			else
-				return (1);
-		}
-	}
-	return (0);
+	print_map(data);
+	return (1);
 }
 
 int	map_test(t_data *data)
