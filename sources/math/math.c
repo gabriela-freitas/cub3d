@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
+/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:55:37 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/13 23:59:39 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/17 19:53:36 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,12 @@ void	calculate_rays(t_data *data)
 	int	x;
 
 	x = 0;
-	nbr_rays = 10;
+	nbr_rays = WIN_W - 1;
 	data->p.rcast.fov_x = 0;
 	data->p.rcast.fov_y = 0.66;
-	printf("p_x: %f | p_y : %f\n", data->p.p_x, data->p.p_y);
-	printf("map_x: %d | map_y : %d\n", data->p.rcast.map_x, data->p.rcast.map_y);
-	printf("\n\n");
+	//printf("p_x: %f | p_y : %f\n", data->p.p_x, data->p.p_y);
+	//printf("map_x: %d | map_y : %d\n", data->p.rcast.map_x, data->p.rcast.map_y);
+	//printf("\n\n");
 	while (x <= nbr_rays)
 	{
 		start_vars(data, x, nbr_rays);
@@ -91,6 +91,16 @@ void	calculate_rays(t_data *data)
 		calc_steps(data);
 		dda_algorithm(data);
 		calc_draw_vars(data);
+		int i = -1;
+		int color =  0x2F323F;
+		while (++i < WIN_H)
+		{
+			if (i == data->p.rcast.draw_start)
+				color =  0x943241;
+			if (i == data->p.rcast.draw_end)
+				color =  0x1263617;
+			my_mlx_pixel_put(data->mlx, nbr_rays - x, i, color);
+		}
 		//calc_draw(data);
 		//draw
 		x++;
@@ -102,7 +112,7 @@ void	mathematics(t_data *data)
 	init_direction(data);
 	data->timers.time = 0;
 	data->timers.old_time = 0;
-	data->p.rcast.wall_height = 30;
+	data->p.rcast.wall_height = WIN_H;
 	while (1)
 	{
 		calculate_rays(data);
