@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/17 20:00:01 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/18 17:53:07 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,5 +181,7 @@ void	my_mlx_pixel_put(t_mlx *data, int x, int y, int color);
 int		key_code(int keycode);
 int		close_win(void);
 void	print_square(t_mlx *mlx, int x, int y, int size, int color);
+t_mlx 	*config_mlx(void);
+void	draw_ray(t_data *data, int nbr_rays, int x);
 
 #endif

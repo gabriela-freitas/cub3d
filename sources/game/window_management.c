@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:48:11 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/17 19:06:39 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:00:15 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,45 @@ void	print_square(t_mlx *mlx, int x, int y, int size, int color)
 		j = -1;
 		while (++j < size)
 			my_mlx_pixel_put(mlx, x + i, y + j, color);
+	}
+}
+
+
+t_mlx *config_mlx(void)
+{
+	static t_mlx	mlx;
+
+	mlx.p_mlx = mlx_init();
+	if (!mlx.p_mlx)
+		return (NULL);
+	mlx.p_mlx_win = mlx_new_window(mlx.p_mlx, WIN_W, WIN_H, "Cub3D");
+	if (!mlx.p_mlx_win)
+		return (NULL);
+	mlx.img = mlx_new_image(mlx.p_mlx,  WIN_W, WIN_H);
+	if (!mlx.img)
+		return (NULL);
+	mlx.addr = mlx_get_data_addr(mlx.img, &mlx.bits_per_pixel, &mlx.line_length,
+								&mlx.endian);
+	if (!mlx.addr)
+		return (NULL);
+	mlx_hook(mlx.p_mlx_win, DESTROY_NOTIFY, ButtonPressMask, close_win, NULL);
+	mlx_hook(mlx.p_mlx_win, KEY_PRESS, KeyPressMask, key_code, NULL);
+	return (&mlx);
+}
+
+void	draw_ray(t_data *data, int nbr_rays, int x)
+{
+	int	i;
+	int	color;
+
+	i = -1;
+	color = 0x2F323F;
+	while (++i < WIN_H)
+	{
+		if (i == data->p.rcast.draw_start)
+			color =  0x943241;
+		if (i == data->p.rcast.draw_end)
+			color =  0x1263617;
+		my_mlx_pixel_put(data->mlx, nbr_rays - x, i, color);
 	}
 }

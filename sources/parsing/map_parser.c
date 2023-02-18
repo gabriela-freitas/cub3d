@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
+/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:27:51 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/13 18:44:54 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/18 17:58:03 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@ void	print_map(t_data *data)
 void	exit_message(char *message, t_data *data)
 {
 	free_split(data->parse.file);
+	if (data->mlx->p_mlx)
+		free(data->mlx->p_mlx);
+	if (data->mlx->p_mlx_win)
+		free(data->mlx->p_mlx_win);
+	if (data->mlx->img)
+		free(data->mlx->img);
+	if (data->mlx->addr)
+		free(data->mlx->addr);
 	printf("%s\n", message);
 	exit(0);
 }
