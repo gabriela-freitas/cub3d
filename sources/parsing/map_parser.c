@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:27:51 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/18 17:58:03 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:16:24 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ void	print_map(t_data *data)
 /*Frees the allocated memory and exits the program*/
 void	exit_message(char *message, t_data *data)
 {
-	free_split(data->parse.file);
-	if (data->mlx->p_mlx)
-		free(data->mlx->p_mlx);
-	if (data->mlx->p_mlx_win)
-		free(data->mlx->p_mlx_win);
-	if (data->mlx->img)
-		free(data->mlx->img);
-	if (data->mlx->addr)
-		free(data->mlx->addr);
 	printf("%s\n", message);
+	free_split(data->parse.file);
+	if (data-> mlx && data->mlx->p_mlx)
+		free(data->mlx->p_mlx);
+	if (data-> mlx && data->mlx->p_mlx_win)
+		free(data->mlx->p_mlx_win);
+	if (data-> mlx && data->mlx->img)
+		free(data->mlx->img);
+	if (data-> mlx && data->mlx->addr)
+		free(data->mlx->addr);
 	exit(0);
 }

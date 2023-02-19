@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
+/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:55:27 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/02/13 15:53:17 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/19 18:21:36 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,16 @@ void	read_file(char *file_name, t_data *data)
 static int	first_line(char *line)
 {
 	int	i;
-	int	flag;
 
 	i = -1;
-	flag = 0;
 	while (line[++i] != '\n' && line[i])
 	{
-		if (line[i] == '0')
-			return (0);
-		else if (line[i] == '1')
-			flag++;
-		else if (!(line[i] == '1' || line[i] == 9 || line[i] == ' '))
+		if (line[i] != '0' && line[i] != '1' && line[i] != 'W'
+			&& line[i] != 'S' && line[i] != 'N' && line[i] != 'E'
+				&& !ft_isspace(line[i]))
 			return (0);
 	}
-	if (flag > 0)
-		return (1);
-	else
-		return (0);
+	return (1);
 }
 
 /*Read from the file and fill the data->map.map (char **) recursively*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
+/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:55:37 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/19 18:27:19 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/19 18:30:26 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,12 @@ void	calculate_rays(t_data *data)
 
 void	mathematics(t_data *data)
 {
-	init_direction(data);
 	data->timers.time = 0;
 	data->timers.old_time = 0;
 	data->p.rcast.wall_height = WIN_H;
-	while (1)
-	{
-		calculate_rays(data);
-		break ;
-	}
+	// while (1)
+	// {
+	calculate_rays(data);
+	// 	break ;
+	// }
 }

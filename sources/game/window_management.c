@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
+/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:48:11 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/19 18:34:40 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/19 18:45:29 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,24 @@ void	my_mlx_pixel_put(t_mlx *data, int x, int y, int color)
 /*It' triggered when the users presses a key
 	Deals with movements (W, S, D, A) and (right and left arrow)
 	and closing the window when ESC is pressed*/
-int	key_code(int keycode)
+int	key_code(int keycode, t_data *data)
 {
 	if (keycode == key_ESC)
 		exit(0);
+	// if (keycode == key_D)
+	// {
+	// 	data->p.p_x += 0.2;
+	// 	mathematics(data);
+	// }
+	(void)data;
 	printf("key: %d\n", keycode);
 	return (1);
 }
 
 /*It's triggered when the user clicks on the window's exit button*/
-int	close_win(void)
+int	close_win(t_data *data)
 {
-	exit(0);
+	exit_message("thank you for playing!", data);
 	return (1);
 }
 
@@ -53,7 +59,7 @@ void	print_square(t_mlx *mlx, int x, int y, int size, int color)
 }
 
 
-t_mlx *config_mlx(void)
+t_mlx *config_mlx(t_data *data)
 {
 	static t_mlx	mlx;
 
@@ -70,8 +76,7 @@ t_mlx *config_mlx(void)
 								&mlx.endian);
 	if (!mlx.addr)
 		return (NULL);
-	mlx_hook(mlx.p_mlx_win, DESTROY_NOTIFY, ButtonPressMask, close_win, NULL);
-	mlx_hook(mlx.p_mlx_win, KEY_PRESS, KeyPressMask, key_code, NULL);
+	mlx_hook(mlx.p_mlx_win, DESTROY_NOTIFY, ButtonPressMask, close_win, data);
 	return (&mlx);
 }
 
