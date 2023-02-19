@@ -6,7 +6,7 @@
 #    By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 20:35:26 by gafreita          #+#    #+#              #
-#    Updated: 2023/02/19 18:50:11 by ratinhosujo      ###   ########.fr        #
+#    Updated: 2023/02/19 18:51:11 by ratinhosujo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	@$(CC) $(OBJECTS) $(LDLIBS) -o $(NAME)
-	@echo "$(GREEN)$(NAME) is ready to use$(WHITE)
+	@echo "$(GREEN)$(NAME) is ready to use$(WHITE)"
 
 clean:
 	@$(RM) $(OBJECTS)
