@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:48:11 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/18 18:00:15 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:34:40 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,20 @@ void	draw_ray(t_data *data, int nbr_rays, int x)
 	color = 0x2F323F;
 	while (++i < WIN_H)
 	{
-		if (i == data->p.rcast.draw_start)
-			color =  0x943241;
-		if (i == data->p.rcast.draw_end)
-			color =  0x1263617;
+		if (data->p.rcast.side_hit)
+		{
+			if (i == data->p.rcast.draw_start)
+				color =  0x943241;
+			if (i == data->p.rcast.draw_end)
+				color =  0x1263617;
+		}
+		else
+		{
+			if (i == data->p.rcast.draw_start)
+			color = 255*65536+255*256;
+			if (i == data->p.rcast.draw_end)
+				color =  0x1263617;
+		}
 		my_mlx_pixel_put(data->mlx, nbr_rays - x, i, color);
 	}
 }
