@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:48:11 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/19 18:45:29 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:49:30 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ int	key_code(int keycode, t_data *data)
 {
 	if (keycode == key_ESC)
 		exit(0);
-	// if (keycode == key_D)
-	// {
-	// 	data->p.p_x += 0.2;
-	// 	mathematics(data);
-	// }
-	(void)data;
+	if (keycode == key_D)
+	{
+		data->p.p_x += 0.2;
+		mathematics(data);
+	}
 	printf("key: %d\n", keycode);
 	return (1);
 }
