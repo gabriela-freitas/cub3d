@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/18 17:53:07 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:23:56 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@
 #define WIN_W 960
 # define TRUE 1
 # define FALSE 0
-#ifdef INFINITY
+# define INF 100000
 /* INFINITY is supported */
-#endif
 
 
 typedef struct	s_mlx {
