@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:55:37 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/19 19:01:27 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/19 19:48:44 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,6 @@ void	mathematics(t_data *data)
 	}
 	printf("p_x : %f\n p_y : %f\n", data->p.p_x, data->p.p_y);
 	calculate_rays(data);
+	printf("%f\n", data->p.angle);
+	printf("%d\n", data->timers.time);
 }

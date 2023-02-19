@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/19 18:41:59 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/19 19:39:27 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define TRUE 1
 # define FALSE 0
 # define INF 100000
+# define PI 3.141592653589793
 /* INFINITY is supported */
 
 
@@ -118,6 +119,7 @@ typedef struct s_raycast
 
 typedef struct s_player
 {
+	double		angle;
 	int			player_i;
 	int			player_j;
 	double		p_x;		// posicao x do player (actualizar) mas incrementa 0.1
@@ -183,5 +185,7 @@ int		close_win(t_data *data);
 void	print_square(t_mlx *mlx, int x, int y, int size, int color);
 t_mlx	*config_mlx(t_data *data);
 void	draw_ray(t_data *data, int nbr_rays, int x);
+void	move(t_data *data, int key);
+
 
 #endif

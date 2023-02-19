@@ -30,24 +30,28 @@ void	init_direction(t_data *data)
 		printf("\n⇈ player is facing North.\n");
 		data->p.rcast.p_dir_x = 0;
 		data->p.rcast.p_dir_y = 1;
+		data->p.angle = PI / 2;
 	}
 	else if (data->map.map[data->p.player_i][data->p.player_j] == 'S')
 	{
 		printf("\n⇊ player is facing South.\n");
 		data->p.rcast.p_dir_x = 0;
 		data->p.rcast.p_dir_y = -1;
+		data->p.angle = 3 * PI / 2;
 	}
 	else if (data->map.map[data->p.player_i][data->p.player_j] == 'E')
 	{
 		printf("\n⇉ player is facing East.\n");
 		data->p.rcast.p_dir_x = 1;
 		data->p.rcast.p_dir_y = 0;
+		data->p.angle = 0;
 	}
 	else if (data->map.map[data->p.player_i][data->p.player_j] == 'W')
 	{
 		printf("\n⇇ player is facing West.\n");
 		data->p.rcast.p_dir_x = -1;
 		data->p.rcast.p_dir_y = 0;
+		data->p.angle = PI;
 	}
 }
 
@@ -108,11 +112,11 @@ void	calc_steps(t_data *data)
 		data->p.rcast.dist_x = (data->p.player_j + 1.0 - data->p.p_x) \
 		* data->p.rcast.d_x;
 	}
-/* 	else
+	else
 	{
 		data->p.rcast.step_x = 0;
 		data->p.rcast.dist_x = INF;
-	} */
+	}
 	if (data->p.rcast.ray_y < 0 && data->p.rcast.d_y > 0)
 	{
 		data->p.rcast.step_y = -1;
