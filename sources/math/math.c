@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:55:37 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/19 18:30:26 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/19 19:01:27 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	dda_algorithm(t_data *data)
 		if (data->map.map[data->p.rcast.map_y][data->p.rcast.map_x] == '1')
 			data->p.rcast.hit = 1;
 	}
-	printf("dist x : %f | dist y : %f\n", data->p.rcast.dist_x, data->p.rcast.dist_y);
+	//printf("dist x : %f | dist y : %f\n", data->p.rcast.dist_x, data->p.rcast.dist_y);
 }
 
 /* void	calc_draw(t_data *data)
@@ -92,20 +92,19 @@ void	calculate_rays(t_data *data)
 		dda_algorithm(data);
 		calc_draw_vars(data);
 		draw_ray(data, nbr_rays, x);
-		//calc_draw(data);
-		//draw
 		x++;
 	}
+	data->timers.time++;
 }
 
 void	mathematics(t_data *data)
 {
-	data->timers.time = 0;
-	data->timers.old_time = 0;
 	data->p.rcast.wall_height = WIN_H;
-	// while (1)
-	// {
+	if (data->timers.time == 0)
+	{
+		data->p.p_x = data->p.player_j;
+		data->p.p_y = data->p.player_i;
+	}
+	printf("p_x : %f\n p_y : %f\n", data->p.p_x, data->p.p_y);
 	calculate_rays(data);
-	// 	break ;
-	// }
 }

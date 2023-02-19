@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:48:11 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/19 18:49:30 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/19 18:52:17 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	key_code(int keycode, t_data *data)
 		exit(0);
 	if (keycode == key_D)
 	{
+		printf("%f\n", data->p.p_x);
 		data->p.p_x += 0.2;
 		mathematics(data);
 	}
