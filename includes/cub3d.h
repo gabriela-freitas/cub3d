@@ -6,9 +6,10 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/19 18:00:40 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:41:59 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -27,9 +28,8 @@
 #define WIN_W 960
 # define TRUE 1
 # define FALSE 0
-#ifdef INFINITY
+# define INF 100000
 /* INFINITY is supported */
-#endif
 
 
 typedef struct	s_mlx {
@@ -179,9 +179,9 @@ void	mathematics(t_data *data);
 //WINDOW MANAGEMENT
 void	my_mlx_pixel_put(t_mlx *data, int x, int y, int color);
 int		key_code(int keycode, t_data *data);
-int		close_win(void);
+int		close_win(t_data *data);
 void	print_square(t_mlx *mlx, int x, int y, int size, int color);
-t_mlx *config_mlx(t_data *data);
+t_mlx	*config_mlx(t_data *data);
 void	draw_ray(t_data *data, int nbr_rays, int x);
 
 #endif

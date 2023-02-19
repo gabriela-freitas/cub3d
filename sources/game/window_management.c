@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:48:11 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/19 18:06:08 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:41:46 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	key_code(int keycode, t_data *data)
 }
 
 /*It's triggered when the user clicks on the window's exit button*/
-int	close_win(void)
+int	close_win(t_data *data)
 {
-	exit(0);
+	exit_message("thank you for playing!", data);
 	return (1);
 }
 

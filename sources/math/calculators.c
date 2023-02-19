@@ -67,7 +67,7 @@ void	calc_vars(t_data *data)
 		data->p.rcast.d_x = fabs(1.0 / data->p.rcast.ray_x);
 	else
 		data->p.rcast.d_x = -1;
-	if (data->p.rcast.p_dir_x != 0)
+	if (data->p.rcast.p_dir_y != 0)
 		data->p.rcast.d_y = fabs(1.0 / data->p.rcast.ray_y);
 	else
 		data->p.rcast.d_y = -1;
@@ -110,6 +110,11 @@ void	calc_steps(t_data *data)
 		data->p.rcast.dist_x = (data->p.player_j + 1.0 - data->p.p_x) \
 		* data->p.rcast.d_x;
 	}
+	else
+	{
+		data->p.rcast.step_x = 0;
+		data->p.rcast.dist_x = INF;
+	}
 	if (data->p.rcast.ray_y < 0 && data->p.rcast.d_y > 0)
 	{
 		data->p.rcast.step_y = -1;
@@ -121,5 +126,10 @@ void	calc_steps(t_data *data)
 		data->p.rcast.step_y = 1;
 		data->p.rcast.dist_y = (data->p.player_i + 1.0 - data->p.p_y) \
 		* data->p.rcast.d_y;
+	}
+	else
+	{
+		data->p.rcast.step_y = 0;
+		data->p.rcast.dist_y = INF;
 	}
 }
