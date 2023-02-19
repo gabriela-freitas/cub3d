@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:55:37 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/17 19:53:36 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/18 17:53:27 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,7 @@ void	calculate_rays(t_data *data)
 		calc_steps(data);
 		dda_algorithm(data);
 		calc_draw_vars(data);
-		int i = -1;
-		int color =  0x2F323F;
-		while (++i < WIN_H)
-		{
-			if (i == data->p.rcast.draw_start)
-				color =  0x943241;
-			if (i == data->p.rcast.draw_end)
-				color =  0x1263617;
-			my_mlx_pixel_put(data->mlx, nbr_rays - x, i, color);
-		}
+		draw_ray(data, nbr_rays, x);
 		//calc_draw(data);
 		//draw
 		x++;
