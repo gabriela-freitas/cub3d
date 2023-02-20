@@ -31,6 +31,8 @@ void	init_direction(t_data *data)
 		data->p.rcast.p_dir_x = 0;
 		data->p.rcast.p_dir_y = 1;
 		data->p.angle = PI / 2;
+		data->p.rcast.fov_x = 0.66;
+		data->p.rcast.fov_y = 0.0;
 	}
 	else if (data->map.map[data->p.player_i][data->p.player_j] == 'S')
 	{
@@ -38,20 +40,24 @@ void	init_direction(t_data *data)
 		data->p.rcast.p_dir_x = 0;
 		data->p.rcast.p_dir_y = -1;
 		data->p.angle = 3 * PI / 2;
+		data->p.rcast.fov_x = -0.66;
+		data->p.rcast.fov_y = 0.;
 	}
 	else if (data->map.map[data->p.player_i][data->p.player_j] == 'E')
 	{
 		printf("\n⇉ player is facing East.\n");
 		data->p.rcast.p_dir_x = 1;
 		data->p.rcast.p_dir_y = 0;
-		data->p.angle = 0;
+		data->p.rcast.fov_x = 0;
+		data->p.rcast.fov_y = -0.66;
 	}
 	else if (data->map.map[data->p.player_i][data->p.player_j] == 'W')
 	{
 		printf("\n⇇ player is facing West.\n");
 		data->p.rcast.p_dir_x = -1;
 		data->p.rcast.p_dir_y = 0;
-		data->p.angle = PI;
+		data->p.rcast.fov_x = 0;
+		data->p.rcast.fov_y = 0.66;
 	}
 }
 

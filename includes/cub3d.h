@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/19 19:39:27 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/20 18:01:56 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include "mlx.h"
 
 #define WIN_H 540
-#define WIN_W 960
+#define WIN_W 800
 # define TRUE 1
 # define FALSE 0
 # define INF 100000
@@ -71,6 +71,17 @@ enum e_prefix{
 	F,
 	C
 };
+
+typedef struct s_move
+{
+	int	move_front;
+	int	move_back;
+	int	move_left;
+	int	move_right;
+	double	ang_var;
+	double	r_sign;
+	int		flag;
+}	t_move;
 
 typedef struct s_difus
 {
@@ -125,7 +136,7 @@ typedef struct s_player
 	double		p_x;		// posicao x do player (actualizar) mas incrementa 0.1
 	double		p_y;		// posicao y do player (actualizar) mas incrementa 0.1
 	t_raycast	rcast;
-
+	t_move		move;
 }	t_player;
 
 typedef struct s_map
@@ -176,6 +187,8 @@ void	calc_vars(t_data *data);
 void	calc_draw_vars(t_data *data);
 void	calc_steps(t_data *data);
 void	mathematics(t_data *data);
+void	dda_algorithm(t_data *data);
+void	rotate(t_data *data, int key);
 
 
 //WINDOW MANAGEMENT

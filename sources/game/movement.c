@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 19:27:25 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/19 20:08:24 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/20 18:07:37 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,28 @@
 
 void	move(t_data *data, int key)
 {
-	if (data->p.angle >= PI / 2 && data->p.angle <= 3 * PI / 2)
+	data->p.move.move_left = 1;
+	data->p.move.move_right = 1;
+	data->p.move.move_front = 1;
+	data->p.move.move_back = 1;
+	if (key == key_D && data->p.move.move_right == 1)
 	{
-		if (key == key_D)
-		{
-			data->p.p_x += 0.1 * sin(data->p.angle);
-			data->p.p_y += 0.1 * cos(data->p.angle);
-		}
-		if (key == key_A)
-		{
-			data->p.p_x -= 0.1 * sin(data->p.angle);
-			data->p.p_y -= 0.1 * cos(data->p.angle);
-		}
-		if (key == key_W)
-		{
-			data->p.p_x += 0.1 * cos(data->p.angle);
-			data->p.p_y += 0.1 * sin(data->p.angle);
-		}
-		if (key == key_S)
-		{
-			data->p.p_x -= 0.1 * cos(data->p.angle);
-			data->p.p_y -= 0.1 * sin(data->p.angle);
-		}
+		data->p.p_x -= data->p.rcast.p_dir_y * 0.1;
+		data->p.p_y -= data->p.rcast.p_dir_x * 0.1;
 	}
-	else
+	if (key == key_A && data->p.move.move_left == 1)
 	{
-		if (key == key_D)
-		{
-			data->p.p_x -= 0.1 * sin(data->p.angle);
-			data->p.p_y -= 0.1 * cos(data->p.angle);
-		}
-		if (key == key_A)
-		{
-			data->p.p_x += 0.1 * sin(data->p.angle);
-			data->p.p_y += 0.1 * cos(data->p.angle);
-		}
-		if (key == key_W)
-		{
-			data->p.p_x += 0.1 * cos(data->p.angle);
-			data->p.p_y += 0.1 * sin(data->p.angle);
-		}
-		if (key == key_S)
-		{
-			data->p.p_x -= 0.1 * cos(data->p.angle);
-			data->p.p_y -= 0.1 * sin(data->p.angle);
-		}
+		data->p.p_x += data->p.rcast.p_dir_y * 0.1;
+		data->p.p_y += data->p.rcast.p_dir_x * 0.1;
 	}
-	printf("angle : %f\n", data->p.angle);
+	if (key == key_W && data->p.move.move_front == 1)
+	{
+		data->p.p_x += data->p.rcast.p_dir_x * 0.1;
+		data->p.p_y += data->p.rcast.p_dir_y * 0.1;
+	}
+	if (key == key_S && data->p.move.move_back == 1)
+	{
+		data->p.p_x -= data->p.rcast.p_dir_x * 0.1;
+		data->p.p_y -= data->p.rcast.p_dir_y * 0.1;
+	}
 }
