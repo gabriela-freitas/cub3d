@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:55:37 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/20 18:24:04 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/20 18:58:42 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,6 @@ void	calculate_rays(t_data *data)
 
 	x = 0;
 	nbr_rays = WIN_W - 1;
-	//printf("p_x: %f | p_y : %f\n", data->p.p_x, data->p.p_y);
-	//printf("map_x: %d | map_y : %d\n", data->p.rcast.map_x, data->p.rcast.map_y);
-	//printf("\n\n");
 	while (x <= nbr_rays)
 	{
 		start_vars(data, x, nbr_rays);
@@ -79,8 +76,6 @@ void	mathematics(t_data *data)
 		data->p.player_j = (int)data->p.p_x;
 		data->p.player_i = (int)data->p.p_y;
 	}
-	printf("p_x : %f\n p_y : %f\n", data->p.p_x, data->p.p_y);
+	printf("p_x : %f | p_y : %f\n", data->p.p_x, data->p.p_y);
 	calculate_rays(data);
-	printf("%f\n", data->p.angle);
-	printf("%d\n", data->timers.time);
 }

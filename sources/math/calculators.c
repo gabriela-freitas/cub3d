@@ -70,7 +70,6 @@ void	calc_vars(t_data *data)
 	data->p.rcast.cam_x;
 	data->p.rcast.ray_y = data->p.rcast.p_dir_y + data->p.rcast.fov_y * \
 	data->p.rcast.cam_x;
-	//printf("ray_x: %f | ray_y : %f\n", data->p.rcast.ray_x, data->p.rcast.ray_y);
 	if (data->p.rcast.ray_x != 0)
 		data->p.rcast.d_x = fabs(1.0 / data->p.rcast.ray_x);
 	else
@@ -79,7 +78,6 @@ void	calc_vars(t_data *data)
 		data->p.rcast.d_y = fabs(1.0 / data->p.rcast.ray_y);
 	else
 		data->p.rcast.d_y = -1;
-	//printf("d_x: %f | d_y : %f\n", data->p.rcast.d_x, data->p.rcast.d_y);
 }
 
 // calculates the distance to the camera plane,
@@ -91,9 +89,7 @@ void	calc_draw_vars(t_data *data)
 		data->p.rcast.cam_plane_dist = (data->p.rcast.dist_x - data->p.rcast.d_x);
 	else
 		data->p.rcast.cam_plane_dist = (data->p.rcast.dist_y - data->p.rcast.d_y);
-	//printf("dist cam plane to hit : %f\n", data->p.rcast.cam_plane_dist);
 	data->p.rcast.line_height = (int)(data->p.rcast.wall_height / data->p.rcast.cam_plane_dist);
-	//printf("line_height : %d\n\n", data->p.rcast.line_height);
 	data->p.rcast.draw_start = - data->p.rcast.line_height / 2 + data->p.rcast.wall_height / 2;
 	if (data->p.rcast.draw_start < 0)
 		data->p.rcast.draw_start = 0;

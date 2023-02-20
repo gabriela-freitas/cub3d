@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:48:11 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/20 18:03:00 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/20 19:27:57 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,17 +92,37 @@ void	draw_ray(t_data *data, int nbr_rays, int x)
 	{
 		if (data->p.rcast.side_hit)
 		{
-			if (i == data->p.rcast.draw_start)
-				color =  0x943241;
-			if (i == data->p.rcast.draw_end)
-				color =  0x1263617;
+			if (data->p.rcast.ray_y > 0)
+			{
+				if (i == data->p.rcast.draw_start)
+					color =  100 * 65536;
+				if (i == data->p.rcast.draw_end)
+					color =  0x1263617;
+			}
+			else
+			{
+				if (i == data->p.rcast.draw_start)
+					color =  255*65536;
+				if (i == data->p.rcast.draw_end)
+					color =  0x1263617;
+			}
 		}
 		else
 		{
-			if (i == data->p.rcast.draw_start)
-			color = 255*65536+255*256;
-			if (i == data->p.rcast.draw_end)
+			if (data->p.rcast.ray_x > 0)
+			{
+				if (i == data->p.rcast.draw_start)
+				color =  125;
+				if (i == data->p.rcast.draw_end)
 				color =  0x1263617;
+			}
+			else
+			{
+				if (i == data->p.rcast.draw_start)
+				color = 256;
+				if (i == data->p.rcast.draw_end)
+				color =  0x1263617;
+			}
 		}
 		my_mlx_pixel_put(data->mlx, nbr_rays - x, i, color);
 	}

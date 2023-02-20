@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:14:01 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/20 18:31:21 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/20 19:00:22 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,7 @@ void	rotate_right(t_data *data)
 void	rotate(t_data *data, int key)
 {
 	if (key == LEFT_ARROW)
-	{
 		rotate_left(data);
-	}
 	if (key == RIGHT_ARROW)
-	{
 		rotate_right(data);
-	}
-	printf("dir_x : %f | dir_y : %f\n", data->p.rcast.p_dir_x, data->p.rcast.p_dir_y);
 }
