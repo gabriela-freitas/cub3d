@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 18:00:28 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/02/13 17:49:06 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/21 21:59:36 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	one_position(t_data *data)
 	else
 		return (0);
 }
-
 
 int	burn_adj_posits(t_data *data, int p_i, int p_j)
 {

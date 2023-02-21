@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:55:37 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/20 18:58:42 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/21 22:03:54 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	dda_algorithm(t_data *data)
 {
-	while(data->p.rcast.hit == 0)
+	while (data->p.rcast.hit == 0)
 	{
-		//jump to next map square, either in x-direction, or in y-direction
 		if (data->p.rcast.dist_x < data->p.rcast.dist_y)
 		{
 			data->p.rcast.dist_x += data->p.rcast.d_x;
@@ -29,7 +28,6 @@ void	dda_algorithm(t_data *data)
 			data->p.rcast.map_y += data->p.rcast.step_y;
 			data->p.rcast.side_hit = 1;
 		}
-		//Check if ray has hit a wall
 		if (data->map.map[data->p.rcast.map_y][data->p.rcast.map_x] == '1')
 			data->p.rcast.hit = 1;
 	}

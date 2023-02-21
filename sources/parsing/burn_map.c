@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 16:10:48 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/13 15:53:17 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/21 21:59:21 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ int	burn_map(t_data *data)
 		}
 		data->difus.i++;
 	}
-	//print_map(data);
 	data->difus.i = 0;
 	return (1);
 }

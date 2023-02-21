@@ -6,37 +6,45 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:14:01 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/20 19:00:22 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/21 21:57:01 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	rotate_left(t_data *data)
 {
-	double old_dir_x;
-	double old_fov_x;
+	double	old_dir_x;
+	double	old_fov_x;
 
 	old_fov_x = data->p.rcast.fov_x;
 	old_dir_x = data->p.rcast.p_dir_x;
-	data->p.rcast.p_dir_x = data->p.rcast.p_dir_x * cos(data->p.move.ang_var) - data->p.rcast.p_dir_y * sin(data->p.move.ang_var);
-	data->p.rcast.p_dir_y = + old_dir_x * sin(data->p.move.ang_var) + data->p.rcast.p_dir_y * cos(data->p.move.ang_var);
-	data->p.rcast.fov_x = data->p.rcast.fov_x * cos(data->p.move.ang_var) - data->p.rcast.fov_y * sin(data->p.move.ang_var);
-	data->p.rcast.fov_y = + old_fov_x * sin(data->p.move.ang_var) + data->p.rcast.fov_y * cos(data->p.move.ang_var);
+	data->p.rcast.p_dir_x = data->p.rcast.p_dir_x * cos(data->p.move.ang_var) \
+	- data->p.rcast.p_dir_y * sin(data->p.move.ang_var);
+	data->p.rcast.p_dir_y = old_dir_x * sin(data->p.move.ang_var) + \
+	data->p.rcast.p_dir_y * cos(data->p.move.ang_var);
+	data->p.rcast.fov_x = data->p.rcast.fov_x * cos(data->p.move.ang_var) - \
+	data->p.rcast.fov_y * sin(data->p.move.ang_var);
+	data->p.rcast.fov_y = old_fov_x * sin(data->p.move.ang_var) + \
+	data->p.rcast.fov_y * cos(data->p.move.ang_var);
 	data->p.move.flag = 1;
 }
 
 void	rotate_right(t_data *data)
 {
-	double old_dir_x;
-	double old_fov_x;
+	double	old_dir_x;
+	double	old_fov_x;
 
 	old_fov_x = data->p.rcast.fov_x;
 	old_dir_x = data->p.rcast.p_dir_x;
-	data->p.rcast.p_dir_x = data->p.rcast.p_dir_x * cos(-data->p.move.ang_var) - data->p.rcast.p_dir_y * sin(-data->p.move.ang_var);
-	data->p.rcast.p_dir_y = + old_dir_x * sin(-data->p.move.ang_var) + data->p.rcast.p_dir_y * cos(-data->p.move.ang_var);
-	data->p.rcast.fov_x = data->p.rcast.fov_x * cos(-data->p.move.ang_var) - data->p.rcast.fov_y * sin(-data->p.move.ang_var);
-	data->p.rcast.fov_y = + old_fov_x * sin(-data->p.move.ang_var) + data->p.rcast.fov_y * cos(-data->p.move.ang_var);
+	data->p.rcast.p_dir_x = data->p.rcast.p_dir_x * cos(-data->p.move.ang_var) \
+	- data->p.rcast.p_dir_y * sin(-data->p.move.ang_var);
+	data->p.rcast.p_dir_y = old_dir_x * sin(-data->p.move.ang_var) + \
+	data->p.rcast.p_dir_y * cos(-data->p.move.ang_var);
+	data->p.rcast.fov_x = data->p.rcast.fov_x * cos(-data->p.move.ang_var) - \
+	data->p.rcast.fov_y * sin(-data->p.move.ang_var);
+	data->p.rcast.fov_y = old_fov_x * sin(-data->p.move.ang_var) + \
+	data->p.rcast.fov_y * cos(-data->p.move.ang_var);
 	data->p.move.flag = 1;
 }
 
