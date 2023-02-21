@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:55:27 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/02/19 18:21:36 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/21 22:01:18 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	first_line(char *line)
 	{
 		if (line[i] != '0' && line[i] != '1' && line[i] != 'W'
 			&& line[i] != 'S' && line[i] != 'N' && line[i] != 'E'
-				&& !ft_isspace(line[i]))
+			&& !ft_isspace(line[i]))
 			return (0);
 	}
 	return (1);
@@ -120,7 +120,6 @@ static void	check_prefix(char **line, t_data *data)
 				data->fd[i] = open(line[1], O_RDONLY);
 				if (data->fd[i] == -1)
 					printf("file not found %s\n", line[0]);
-				//exit_message("file not found", data);
 			}
 			else
 			{

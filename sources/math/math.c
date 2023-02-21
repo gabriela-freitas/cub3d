@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:55:37 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/19 19:48:44 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/21 22:03:54 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	dda_algorithm(t_data *data)
 {
-	while(data->p.rcast.hit == 0)
+	while (data->p.rcast.hit == 0)
 	{
-		//jump to next map square, either in x-direction, or in y-direction
 		if (data->p.rcast.dist_x < data->p.rcast.dist_y)
 		{
 			data->p.rcast.dist_x += data->p.rcast.d_x;
@@ -29,40 +28,10 @@ void	dda_algorithm(t_data *data)
 			data->p.rcast.map_y += data->p.rcast.step_y;
 			data->p.rcast.side_hit = 1;
 		}
-		//Check if ray has hit a wall
 		if (data->map.map[data->p.rcast.map_y][data->p.rcast.map_x] == '1')
 			data->p.rcast.hit = 1;
 	}
-	//printf("dist x : %f | dist y : %f\n", data->p.rcast.dist_x, data->p.rcast.dist_y);
 }
-
-/* void	calc_draw(t_data *data)
-{
-	int	draw;
-	if (!data->p.rcast.side_hit)
-	{
-		if (data->p.rcast.p_dir_y < 0)
-			draw = -1;
-		else
-			draw = 1;
-	}
-	else
-	{
-		if (data->p.rcast.p_dir_x < 0)
-			draw = -2;
-		else
-			draw = 2;
-	}
-	if (draw == 2)
-		//draw N
-	else if (draw == -2)
-		//draw S
-	else if (draw == 1)
-		//draw E
-	else if (draw == -1)
-		//draw W
-
-} */
 
 // cameraX is the x on the camera plane that the current x-coordinate
 // of the screen represents. the right side of the screen will get
@@ -79,11 +48,6 @@ void	calculate_rays(t_data *data)
 
 	x = 0;
 	nbr_rays = WIN_W - 1;
-	data->p.rcast.fov_x = 0;
-	data->p.rcast.fov_y = 0.66;
-	//printf("p_x: %f | p_y : %f\n", data->p.p_x, data->p.p_y);
-	//printf("map_x: %d | map_y : %d\n", data->p.rcast.map_x, data->p.rcast.map_y);
-	//printf("\n\n");
 	while (x <= nbr_rays)
 	{
 		start_vars(data, x, nbr_rays);
@@ -105,8 +69,11 @@ void	mathematics(t_data *data)
 		data->p.p_x = data->p.player_j;
 		data->p.p_y = data->p.player_i;
 	}
-	printf("p_x : %f\n p_y : %f\n", data->p.p_x, data->p.p_y);
+	else
+	{
+		data->p.player_j = (int)data->p.p_x;
+		data->p.player_i = (int)data->p.p_y;
+	}
+	printf("p_x : %f | p_y : %f\n", data->p.p_x, data->p.p_y);
 	calculate_rays(data);
-	printf("%f\n", data->p.angle);
-	printf("%d\n", data->timers.time);
 }

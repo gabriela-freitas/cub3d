@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:48:11 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/19 19:55:01 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/21 22:08:10 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,25 @@ void	my_mlx_pixel_put(t_mlx *data, int x, int y, int color)
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
 /*It' triggered when the users presses a key
 	Deals with movements (W, S, D, A) and (right and left arrow)
 	and closing the window when ESC is pressed*/
+
 int	key_code(int keycode, t_data *data)
 {
 	if (keycode == key_ESC)
 		exit(0);
 	else
 	{
-		move(data, keycode);
+		if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW)
+			rotate(data, keycode);
+		else
+			move(data, keycode);
 		mathematics(data);
 	}
-	printf("key: %d\n", keycode);
 	return (1);
 }
 
@@ -57,8 +60,7 @@ void	print_square(t_mlx *mlx, int x, int y, int size, int color)
 	}
 }
 
-
-t_mlx *config_mlx(t_data *data)
+t_mlx	*config_mlx(t_data *data)
 {
 	static t_mlx	mlx;
 
@@ -68,11 +70,11 @@ t_mlx *config_mlx(t_data *data)
 	mlx.p_mlx_win = mlx_new_window(mlx.p_mlx, WIN_W, WIN_H, "Cub3D");
 	if (!mlx.p_mlx_win)
 		return (NULL);
-	mlx.img = mlx_new_image(mlx.p_mlx,  WIN_W, WIN_H);
+	mlx.img = mlx_new_image(mlx.p_mlx, WIN_W, WIN_H);
 	if (!mlx.img)
 		return (NULL);
-	mlx.addr = mlx_get_data_addr(mlx.img, &mlx.bits_per_pixel, &mlx.line_length,
-								&mlx.endian);
+	mlx.addr = mlx_get_data_addr(mlx.img, &mlx.bits_per_pixel, \
+	&mlx.line_length, &mlx.endian);
 	if (!mlx.addr)
 		return (NULL);
 	mlx_hook(mlx.p_mlx_win, DESTROY_NOTIFY, ButtonPressMask, close_win, data);
@@ -90,17 +92,37 @@ void	draw_ray(t_data *data, int nbr_rays, int x)
 	{
 		if (data->p.rcast.side_hit)
 		{
-			if (i == data->p.rcast.draw_start)
-				color =  0x943241;
-			if (i == data->p.rcast.draw_end)
-				color =  0x1263617;
+			if (data->p.rcast.ray_y > 0)
+			{
+				if (i == data->p.rcast.draw_start)
+					color = 100 * 65536;
+				if (i == data->p.rcast.draw_end)
+					color = 0x1263617;
+			}
+			else
+			{
+				if (i == data->p.rcast.draw_start)
+					color = 255 * 65536;
+				if (i == data->p.rcast.draw_end)
+					color = 0x1263617;
+			}
 		}
 		else
 		{
-			if (i == data->p.rcast.draw_start)
-			color = 255*65536+255*256;
-			if (i == data->p.rcast.draw_end)
-				color =  0x1263617;
+			if (data->p.rcast.ray_x > 0)
+			{
+				if (i == data->p.rcast.draw_start)
+				color = 125;
+				if (i == data->p.rcast.draw_end)
+				color = 0x1263617;
+			}
+			else
+			{
+				if (i == data->p.rcast.draw_start)
+				color = 256;
+				if (i == data->p.rcast.draw_end)
+				color = 0x1263617;
+			}
 		}
 		my_mlx_pixel_put(data->mlx, nbr_rays - x, i, color);
 	}
