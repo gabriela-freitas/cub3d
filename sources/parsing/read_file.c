@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
+/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:55:27 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/02/21 22:01:18 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/22 20:55:03 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,13 @@ static int	first_line(char *line)
 	int	i;
 
 	i = -1;
+	if (is_empty_line(line))
+		return (0);
 	while (line[++i] != '\n' && line[i])
 	{
-		if (line[i] != '0' && line[i] != '1' && line[i] != 'W'
-			&& line[i] != 'S' && line[i] != 'N' && line[i] != 'E'
-			&& !ft_isspace(line[i]))
+		if (!(line[i] == '0' || line[i] == '1' || line[i] == 'W'
+			|| line[i] == 'S' || line[i] == 'N' || line[i] == 'E'
+			|| ft_isspace(line[i])))
 			return (0);
 	}
 	return (1);
@@ -108,7 +110,8 @@ void	get_file_info(t_data *data)
 static void	check_prefix(char **line, t_data *data)
 {
 	int			i;
-	static char	*prefix_list[6] = {"NO", "SO", "WE", "EA", "F", "C"};
+	char		**aux;
+	static		char	*prefix_list[6] = {"NO", "SO", "WE", "EA", "F", "C"};
 
 	i = -1;
 	while (++i < 6)
@@ -117,9 +120,13 @@ static void	check_prefix(char **line, t_data *data)
 		{
 			if (i < 4)
 			{
-				data->fd[i] = open(line[1], O_RDONLY);
+				aux = ft_split(line[1], '\n');
+				//TO-DO: mlx file to image, but I need the mlx pointer,
+				//so it has to be done after the mlx config
+				data->fd[i] = open(aux[0], O_RDONLY);
+				free_split(aux);
 				if (data->fd[i] == -1)
-					printf("file not found %s\n", line[0]);
+					printf("file not found %s\n", aux[0]);
 			}
 			else
 			{
