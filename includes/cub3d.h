@@ -6,7 +6,7 @@
 /*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/20 18:01:56 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/22 04:46:42 by ratinhosujo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,19 @@
 # include "../get_next_line/get_next_line.h"
 # include "mlx.h"
 
-#define WIN_H 540
-#define WIN_W 800
+# define WIN_H 540
+# define WIN_W 800
 # define TRUE 1
 # define FALSE 0
 # define INF 100000
 # define PI 3.141592653589793
+# define STEP 0.15
 /* INFINITY is supported */
 
 
-typedef struct	s_mlx {
+typedef struct s_mlx
+{
 	void	*img;
-	//imagem auxiliar, como isso funcionaria?
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
@@ -43,7 +44,6 @@ typedef struct	s_mlx {
 	void	*p_mlx;
 	void	*p_mlx_win;
 }				t_mlx;
-
 
 enum e_keys{
 	key_W = 119,
@@ -74,13 +74,13 @@ enum e_prefix{
 
 typedef struct s_move
 {
-	int	move_front;
-	int	move_back;
-	int	move_left;
-	int	move_right;
+	int		flag;
+	int		move_front;
+	int		move_back;
+	int		move_left;
+	int		move_right;
 	double	ang_var;
 	double	r_sign;
-	int		flag;
 }	t_move;
 
 typedef struct s_difus
@@ -110,10 +110,10 @@ typedef struct s_raycast
 	int		step_x;
 	int		step_y;
 	int		side_hit;
-	int		line_height;	// comprimento da linha vertical
-	int		wall_height;	// altura fixa
-	int		draw_start;		// pixel from bottom to top that starts wall
-	int		draw_end;		// pixel that ends
+	int		line_height;
+	int		wall_height;
+	int		draw_start;
+	int		draw_end;
 	double	d_x;
 	double	d_y;
 	double	cam_x;
@@ -121,8 +121,8 @@ typedef struct s_raycast
 	double	ray_y;
 	double	fov_x;
 	double	fov_y;
-	double	dist_x;			// actualiza quando rodas a imagem
-	double	dist_y;			// actualiza quando rodas a imagem
+	double	dist_x;
+	double	dist_y;
 	double	p_dir_x;
 	double	p_dir_y;
 	double	cam_plane_dist;
@@ -133,8 +133,8 @@ typedef struct s_player
 	double		angle;
 	int			player_i;
 	int			player_j;
-	double		p_x;		// posicao x do player (actualizar) mas incrementa 0.1
-	double		p_y;		// posicao y do player (actualizar) mas incrementa 0.1
+	double		p_x;
+	double		p_y;
 	t_raycast	rcast;
 	t_move		move;
 }	t_player;
