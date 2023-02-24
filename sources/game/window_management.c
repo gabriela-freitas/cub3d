@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
+/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:48:11 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/21 22:08:10 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/24 20:19:17 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	my_mlx_pixel_put(t_mlx *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -27,7 +27,7 @@ void	my_mlx_pixel_put(t_mlx *data, int x, int y, int color)
 int	key_code(int keycode, t_data *data)
 {
 	if (keycode == key_ESC)
-		exit(0);
+		exit_message("thank you for playing!", data);
 	else
 	{
 		if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW)
@@ -60,25 +60,24 @@ void	print_square(t_mlx *mlx, int x, int y, int size, int color)
 	}
 }
 
-t_mlx	*config_mlx(t_data *data)
+int	config_mlx(t_data *data)
 {
-	static t_mlx	mlx;
-
-	mlx.p_mlx = mlx_init();
-	if (!mlx.p_mlx)
-		return (NULL);
-	mlx.p_mlx_win = mlx_new_window(mlx.p_mlx, WIN_W, WIN_H, "Cub3D");
-	if (!mlx.p_mlx_win)
-		return (NULL);
-	mlx.img = mlx_new_image(mlx.p_mlx, WIN_W, WIN_H);
-	if (!mlx.img)
-		return (NULL);
-	mlx.addr = mlx_get_data_addr(mlx.img, &mlx.bits_per_pixel, \
-	&mlx.line_length, &mlx.endian);
-	if (!mlx.addr)
-		return (NULL);
-	mlx_hook(mlx.p_mlx_win, DESTROY_NOTIFY, ButtonPressMask, close_win, data);
-	return (&mlx);
+	data->mlx.p_mlx = mlx_init();
+	if (!data->mlx.p_mlx)
+		return (0);
+	get_file_info(data);
+	data->mlx.p_mlx_win = mlx_new_window(data->mlx.p_mlx, WIN_W, WIN_H, "Cub3D");
+	if (!data->mlx.p_mlx_win)
+		return (0);
+	data->mlx.img = mlx_new_image(data->mlx.p_mlx, WIN_W, WIN_H);
+	if (!data->mlx.img)
+		return (0);
+	data->mlx.addr = mlx_get_data_addr(data->mlx.img, &data->mlx.bits_per_pixel, \
+	&data->mlx.line_length, &data->mlx.endian);
+	if (!data->mlx.addr)
+		return (0);
+	mlx_hook(data->mlx.p_mlx_win, DESTROY_NOTIFY, ButtonPressMask, close_win, data);
+	return (1);
 }
 
 void	draw_ray(t_data *data, int nbr_rays, int x)
@@ -124,6 +123,6 @@ void	draw_ray(t_data *data, int nbr_rays, int x)
 				color = 0x1263617;
 			}
 		}
-		my_mlx_pixel_put(data->mlx, nbr_rays - x, i, color);
+		my_mlx_pixel_put(&data->mlx, nbr_rays - x, i, color);
 	}
 }
