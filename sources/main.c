@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:21:40 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/24 20:46:26 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/25 19:44:22 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,6 @@ int	parse_map(char *file_name, t_data *data)
 	i = -1;
 	data->map.map_height = 0;
 	read_file(file_name, data);
-	// data->draw.n = 255;
-	// data->draw.s = 255 * 65536;
-	// data->draw.e = 255 * 255;
-	// data->draw.w = 255 * 65536 + 255;
 	while (data->map.map[++i])
 		data->map.map_height++;
 	if (!map_test(data))
@@ -54,7 +50,7 @@ int	main(int ac, char **av)
 	data.p.move.flag = 1;
 	init_direction(&data);
 	mlx_loop_hook(data.mlx.p_mlx, &main_loop, &data);
-	mathematics(&data);
+	// mathematics(&data);
 	mlx_hook(data.mlx.p_mlx_win, KEY_PRESS, KeyPressMask, key_code, &data);
 	mlx_put_image_to_window(data.mlx.p_mlx, data.mlx.p_mlx_win, \
 	data.mlx.img, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:48:11 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/24 20:19:17 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/25 18:40:44 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	draw_ray(t_data *data, int nbr_rays, int x)
 	int	color;
 
 	i = -1;
-	color = 0x2F323F;
+	color = data->colors[C];
 	while (++i < WIN_H)
 	{
 		if (data->p.rcast.side_hit)
@@ -96,14 +96,14 @@ void	draw_ray(t_data *data, int nbr_rays, int x)
 				if (i == data->p.rcast.draw_start)
 					color = 100 * 65536;
 				if (i == data->p.rcast.draw_end)
-					color = 0x1263617;
+					color = data->colors[F];
 			}
 			else
 			{
 				if (i == data->p.rcast.draw_start)
 					color = 255 * 65536;
 				if (i == data->p.rcast.draw_end)
-					color = 0x1263617;
+					color = data->colors[F];
 			}
 		}
 		else
@@ -113,14 +113,14 @@ void	draw_ray(t_data *data, int nbr_rays, int x)
 				if (i == data->p.rcast.draw_start)
 				color = 125;
 				if (i == data->p.rcast.draw_end)
-				color = 0x1263617;
+				color = data->colors[F];
 			}
 			else
 			{
 				if (i == data->p.rcast.draw_start)
 				color = 256;
 				if (i == data->p.rcast.draw_end)
-				color = 0x1263617;
+				color = data->colors[F];
 			}
 		}
 		my_mlx_pixel_put(&data->mlx, nbr_rays - x, i, color);
