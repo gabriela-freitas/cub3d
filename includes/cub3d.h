@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/24 20:43:50 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/26 19:00:57 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,13 @@ typedef struct s_difus
 
 typedef struct s_wall
 {
-	int 	width;
+	int		width;
 	int		height;
 	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_wall;
 
 typedef struct s_raycast
@@ -104,7 +108,7 @@ typedef struct s_raycast
 	int		step_y;
 	int		side_hit;
 	int		line_height;
-	int		wall_height;
+	int		wall_height; //remover pq e const
 	int		draw_start;
 	int		draw_end;
 	double	d_x;
@@ -118,7 +122,7 @@ typedef struct s_raycast
 	double	dist_y;
 	double	p_dir_x;
 	double	p_dir_y;
-	double	cam_plane_dist;
+	double	cam_plane_dist; //distancia parede
 }	t_raycast;
 
 typedef struct s_player
@@ -184,7 +188,8 @@ int		key_code(int keycode, t_data *data);
 int		close_win(t_data *data);
 void	print_square(t_mlx *mlx, int x, int y, int size, int color);
 int		config_mlx(t_data *data);
-void	draw_ray(t_data *data, int nbr_rays, int x);
+void	draw_ray(t_data *data, int nbr_rays, int x, float Wallx);
 void	move(t_data *data, int key);
+unsigned int	my_mlx_pixel_get(t_wall *img, int x, int y);
 
 #endif

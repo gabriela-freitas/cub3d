@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:21:40 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/25 19:44:22 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/26 17:38:30 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,15 @@ int	parse_map(char *file_name, t_data *data)
 	return (1);
 }
 
+int	get_color_image(t_wall *wall);
+
+unsigned int	my_mlx_pixel_get(t_wall *img, int x, int y)
+{
+	return (*(unsigned int*)(img->addr +
+		(y * img->line_length + x * (img->bits_per_pixel / 8))));
+}
+
+
 int	main(int ac, char **av)
 {
 	t_data	data;
@@ -50,7 +59,7 @@ int	main(int ac, char **av)
 	data.p.move.flag = 1;
 	init_direction(&data);
 	mlx_loop_hook(data.mlx.p_mlx, &main_loop, &data);
-	// mathematics(&data);
+	mathematics(&data);
 	mlx_hook(data.mlx.p_mlx_win, KEY_PRESS, KeyPressMask, key_code, &data);
 	mlx_put_image_to_window(data.mlx.p_mlx, data.mlx.p_mlx_win, \
 	data.mlx.img, 0, 0);
