@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculators.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
+/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:17:13 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/21 22:02:51 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/26 19:58:06 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,16 @@ void	calc_draw_vars(t_data *data)
 	else
 		data->p.rcast.cam_plane_dist = (data->p.rcast.dist_y - \
 		data->p.rcast.d_y);
-	data->p.rcast.line_height = (int)(data->p.rcast.wall_height / \
+	data->p.rcast.line_height = (int)(WIN_H / \
 	data->p.rcast.cam_plane_dist);
 	data->p.rcast.draw_start = -data->p.rcast.line_height / 2 + \
-	data->p.rcast.wall_height / 2;
+	WIN_H / 2;
 	if (data->p.rcast.draw_start < 0)
 		data->p.rcast.draw_start = 0;
 	data->p.rcast.draw_end = data->p.rcast.line_height / 2 + \
-	data->p.rcast.wall_height / 2;
+	WIN_H / 2;
 	if (data->p.rcast.draw_end < 0)
-		data->p.rcast.draw_end = data->p.rcast.wall_height - 1;
+		data->p.rcast.draw_end = WIN_H - 1;
 }
 
 // calculates the direction and size of each step both for x and y

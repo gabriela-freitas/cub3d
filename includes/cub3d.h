@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/26 19:00:57 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/26 20:00:51 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ typedef struct s_raycast
 	int		step_y;
 	int		side_hit;
 	int		line_height;
-	int		wall_height; //remover pq e const
 	int		draw_start;
 	int		draw_end;
 	double	d_x;
@@ -163,33 +162,33 @@ typedef struct s_data
 int		compare(const char *s1, const char *s2);
 
 // MAP CHECKER - BURNING METHOD
-int		burn_map(t_data *data);
-int		adjacent_burned(t_data *data, int i, int j);
-int		map_test(t_data *data);
+int				burn_map(t_data *data);
+int				adjacent_burned(t_data *data, int i, int j);
+int				map_test(t_data *data);
 
-void	exit_message(char *message, t_data *data);
-void	read_file(char *file_name, t_data *data); //gabi
-void	get_file_info(t_data *data);
-void	print_map(t_data *data);
+void			exit_message(char *message, t_data *data);
+void			read_file(char *file_name, t_data *data); //gabi
+void			get_file_info(t_data *data);
+void			print_map(t_data *data);
 
 // MATHEMATICS
-void	init_direction(t_data *data);
-void	start_vars(t_data *data, int x, int nbr_rays);
-void	calc_vars(t_data *data);
-void	calc_draw_vars(t_data *data);
-void	calc_steps(t_data *data);
-void	mathematics(t_data *data);
-void	dda_algorithm(t_data *data);
-void	rotate(t_data *data, int key);
+void			init_direction(t_data *data);
+void			start_vars(t_data *data, int x, int nbr_rays);
+void			calc_vars(t_data *data);
+void			calc_draw_vars(t_data *data);
+void			calc_steps(t_data *data);
+void			mathematics(t_data *data);
+void			dda_algorithm(t_data *data);
+void			rotate(t_data *data, int key);
 
 //WINDOW MANAGEMENT
-void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
-int		key_code(int keycode, t_data *data);
-int		close_win(t_data *data);
-void	print_square(t_mlx *mlx, int x, int y, int size, int color);
-int		config_mlx(t_data *data);
-void	draw_ray(t_data *data, int nbr_rays, int x, float Wallx);
-void	move(t_data *data, int key);
+void			my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 unsigned int	my_mlx_pixel_get(t_wall *img, int x, int y);
+int				key_code(int keycode, t_data *data);
+int				close_win(t_data *data);
+void			print_square(t_mlx *mlx, int x, int y, int size, int color);
+int				config_mlx(t_data *data);
+void			draw_ray(t_data *data, int nbr_rays, int x, float Wallx);
+void			move(t_data *data, int key);
 
 #endif

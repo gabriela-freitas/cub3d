@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:55:37 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/26 19:05:43 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/26 19:58:16 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,12 @@ void	dda_algorithm(t_data *data)
 
 void	calculate_rays(t_data *data)
 {
-	int	nbr_rays;
-	int	x;
+	int		nbr_rays;
+	int		x;
+	double	wall_x;
 
 	x = 0;
 	nbr_rays = WIN_W - 1;
-	double wallX; //where exactly the wall was hit
-	//wallX *= 64;
 	while (x <= nbr_rays)
 	{
 		start_vars(data, x, nbr_rays);
@@ -57,13 +56,14 @@ void	calculate_rays(t_data *data)
 		calc_steps(data);
 		dda_algorithm(data);
 		calc_draw_vars(data);
-		//calculate value of wallX
 		if (data->p.rcast.side_hit == 0)
-			wallX = data->p.p_y + data->p.rcast.cam_plane_dist * data->p.rcast.ray_y;
+			wall_x = data->p.p_y + data->p.rcast.cam_plane_dist
+				* data->p.rcast.ray_y;
 		else
-			wallX =  data->p.p_x + data->p.rcast.cam_plane_dist * data->p.rcast.ray_x;
-		wallX -= floor((wallX));
-		draw_ray(data, nbr_rays, x, wallX);
+			wall_x = data->p.p_x + data->p.rcast.cam_plane_dist
+				* data->p.rcast.ray_x;
+		wall_x -= floor((wall_x));
+		draw_ray(data, nbr_rays, x, wall_x * 64);
 		x++;
 	}
 	data->timers.time++;
@@ -71,7 +71,6 @@ void	calculate_rays(t_data *data)
 
 void	mathematics(t_data *data)
 {
-	data->p.rcast.wall_height = WIN_H; //remover porque isso e const
 	if (data->timers.time == 0)
 	{
 		data->p.p_x = data->p.player_j;

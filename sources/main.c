@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:21:40 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/26 17:38:30 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/26 19:54:56 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	main_loop(t_data *data)
 	data->mlx.img, 0, 0);
 	return (0);
 }
-
-// int		parse_args(char **file); //gabi
 
 int	parse_map(char *file_name, t_data *data)
 {
@@ -34,15 +32,6 @@ int	parse_map(char *file_name, t_data *data)
 		exit_message("map is invalid", data);
 	return (1);
 }
-
-int	get_color_image(t_wall *wall);
-
-unsigned int	my_mlx_pixel_get(t_wall *img, int x, int y)
-{
-	return (*(unsigned int*)(img->addr +
-		(y * img->line_length + x * (img->bits_per_pixel / 8))));
-}
-
 
 int	main(int ac, char **av)
 {

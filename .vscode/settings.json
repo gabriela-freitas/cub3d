@@ -7,7 +7,13 @@
         "cmath": "c",
         "limits": "c",
         "*.tcc": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "istream": "c",
+        "ostream": "c",
+        "memory": "c",
+        "ranges": "c",
+        "streambuf": "c",
+        "tuple": "c"
     },
     "files.autoSave": "afterDelay",
     "editor.insertSpaces": false,

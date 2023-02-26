@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:48:11 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/26 19:32:19 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/26 19:54:44 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 
 	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+unsigned int	my_mlx_pixel_get(t_wall *img, int x, int y)
+{
+	return (*(unsigned int *)
+		(img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8))));
 }
 
 /*It' triggered when the users presses a key
@@ -46,20 +52,6 @@ int	close_win(t_data *data)
 	return (1);
 }
 
-void	print_square(t_mlx *mlx, int x, int y, int size, int color)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < size)
-	{
-		j = -1;
-		while (++j < size)
-			my_mlx_pixel_put(mlx, x + i, y + j, color);
-	}
-}
-
 int	config_mlx(t_data *data)
 {
 	data->mlx.p_mlx = mlx_init();
@@ -80,67 +72,4 @@ int	config_mlx(t_data *data)
 	mlx_hook(data->mlx.p_mlx_win, DESTROY_NOTIFY,
 		ButtonPressMask, close_win, data);
 	return (1);
-}
-
-void	draw_ray(t_data *data, int nbr_rays, int x, float Wallx)
-{
-	int	i;
-	int	color;
-
-	i = -1;
-	color = data->colors[C];
-	while (++i < WIN_H)
-	{
-		if (data->p.rcast.side_hit)
-		{
-			if (data->p.rcast.ray_y > 0)
-			{
-				if (i >= data->p.rcast.draw_start && i < data->p.rcast.draw_end)
-				{
-					color = my_mlx_pixel_get(&data->wall[0],  Wallx * 64,
-						(float)(i - data->p.rcast.draw_start)/
-							(data->p.rcast.draw_end - data->p.rcast.draw_start) * 64);
-				}
-				if (i == data->p.rcast.draw_end)
-					color = data->colors[F];
-			}
-			else
-			{
-				if (i >= data->p.rcast.draw_start && i < data->p.rcast.draw_end)
-				{
-					color = my_mlx_pixel_get(&data->wall[1],  Wallx * 64,
-						(float)(i - data->p.rcast.draw_start)/
-							(data->p.rcast.draw_end - data->p.rcast.draw_start) * 64);
-				}
-				if (i == data->p.rcast.draw_end)
-					color = data->colors[F];
-			}
-		}
-		else
-		{
-			if (data->p.rcast.ray_x > 0)
-			{
-				if (i >= data->p.rcast.draw_start && i < data->p.rcast.draw_end)
-				{
-					color = my_mlx_pixel_get(&data->wall[2],  Wallx * 64,
-						(float)(i - data->p.rcast.draw_start)/
-							(data->p.rcast.draw_end - data->p.rcast.draw_start) * 64);
-				}
-				if (i == data->p.rcast.draw_end)
-					color = data->colors[F];
-			}
-			else
-			{
-				if (i >= data->p.rcast.draw_start && i < data->p.rcast.draw_end)
-				{
-					color = my_mlx_pixel_get(&data->wall[3],  Wallx * 64,
-						(float)(i - data->p.rcast.draw_start)/
-							(data->p.rcast.draw_end - data->p.rcast.draw_start) * 64);
-				}
-				if (i == data->p.rcast.draw_end)
-					color = data->colors[F];
-			}
-		}
-		my_mlx_pixel_put(&data->mlx, nbr_rays - x, i, color);
-	}
 }
