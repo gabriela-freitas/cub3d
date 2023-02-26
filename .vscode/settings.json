@@ -3,7 +3,11 @@
         "cub3d.h": "c",
         "stdio.h": "c",
         "get_next_line.h": "c",
-        "stat.h": "c"
+        "stat.h": "c",
+        "cmath": "c",
+        "limits": "c",
+        "*.tcc": "c",
+        "typeinfo": "c"
     },
     "files.autoSave": "afterDelay",
     "editor.insertSpaces": false,

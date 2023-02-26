@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
+/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:55:37 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/21 22:03:54 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/26 19:05:43 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	calculate_rays(t_data *data)
 
 	x = 0;
 	nbr_rays = WIN_W - 1;
+	double wallX; //where exactly the wall was hit
+	//wallX *= 64;
 	while (x <= nbr_rays)
 	{
 		start_vars(data, x, nbr_rays);
@@ -55,7 +57,13 @@ void	calculate_rays(t_data *data)
 		calc_steps(data);
 		dda_algorithm(data);
 		calc_draw_vars(data);
-		draw_ray(data, nbr_rays, x);
+		//calculate value of wallX
+		if (data->p.rcast.side_hit == 0)
+			wallX = data->p.p_y + data->p.rcast.cam_plane_dist * data->p.rcast.ray_y;
+		else
+			wallX =  data->p.p_x + data->p.rcast.cam_plane_dist * data->p.rcast.ray_x;
+		wallX -= floor((wallX));
+		draw_ray(data, nbr_rays, x, wallX);
 		x++;
 	}
 	data->timers.time++;
@@ -63,7 +71,7 @@ void	calculate_rays(t_data *data)
 
 void	mathematics(t_data *data)
 {
-	data->p.rcast.wall_height = WIN_H;
+	data->p.rcast.wall_height = WIN_H; //remover porque isso e const
 	if (data->timers.time == 0)
 	{
 		data->p.p_x = data->p.player_j;
@@ -74,6 +82,6 @@ void	mathematics(t_data *data)
 		data->p.player_j = (int)data->p.p_x;
 		data->p.player_i = (int)data->p.p_y;
 	}
-	printf("p_x : %f | p_y : %f\n", data->p.p_x, data->p.p_y);
+	// printf("p_x : %f | p_y : %f\n", data->p.p_x, data->p.p_y);
 	calculate_rays(data);
 }

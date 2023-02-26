@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
+/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/22 04:51:50 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/02/26 19:00:57 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ enum e_prefix{
 	SO,
 	WE,
 	EA,
-	F,
-	C
+	F = 0,
+	C = 1
 };
 
 typedef struct s_move
@@ -88,17 +88,16 @@ typedef struct s_difus
 	int	flag;
 }	t_difus;
 
-typedef struct s_draw
+typedef struct s_wall
 {
-	int		n;
-	int		s;
-	int		w;
-	int		e;
-	char	*n_texture;
-	char	*s_texture;
-	char	*w_texture;
-	char	*e_texture;
-}	t_draw;
+	int		width;
+	int		height;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_wall;
 
 typedef struct s_raycast
 {
@@ -109,7 +108,7 @@ typedef struct s_raycast
 	int		step_y;
 	int		side_hit;
 	int		line_height;
-	int		wall_height;
+	int		wall_height; //remover pq e const
 	int		draw_start;
 	int		draw_end;
 	double	d_x;
@@ -123,7 +122,7 @@ typedef struct s_raycast
 	double	dist_y;
 	double	p_dir_x;
 	double	p_dir_y;
-	double	cam_plane_dist;
+	double	cam_plane_dist; //distancia parede
 }	t_raycast;
 
 typedef struct s_player
@@ -149,21 +148,16 @@ typedef struct s_timers
 	int	old_time;
 }	t_timers;
 
-typedef struct s_parsing
-{
-	char	**file;
-}	t_parse;
-
 typedef struct s_data
 {
-	int			fd[6];
+	int			colors[2];
+	char		**file;
 	t_player	p;
 	t_map		map;
 	t_difus		difus;
-	t_parse		parse;
 	t_timers	timers;
-	t_draw		draw;
-	t_mlx		*mlx;
+	t_wall		wall[4];
+	t_mlx		mlx;
 }	t_data;
 
 int		compare(const char *s1, const char *s2);
@@ -189,12 +183,13 @@ void	dda_algorithm(t_data *data);
 void	rotate(t_data *data, int key);
 
 //WINDOW MANAGEMENT
-void	my_mlx_pixel_put(t_mlx *data, int x, int y, int color);
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 int		key_code(int keycode, t_data *data);
 int		close_win(t_data *data);
 void	print_square(t_mlx *mlx, int x, int y, int size, int color);
-t_mlx	*config_mlx(t_data *data);
-void	draw_ray(t_data *data, int nbr_rays, int x);
+int		config_mlx(t_data *data);
+void	draw_ray(t_data *data, int nbr_rays, int x, float Wallx);
 void	move(t_data *data, int key);
+unsigned int	my_mlx_pixel_get(t_wall *img, int x, int y);
 
 #endif

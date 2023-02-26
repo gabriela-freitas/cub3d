@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+         #
+#    By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/25 20:35:26 by gafreita          #+#    #+#              #
-#    Updated: 2023/02/19 18:51:11 by ratinhosujo      ###   ########.fr        #
+#    Updated: 2023/02/24 19:19:17 by gafreita         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
