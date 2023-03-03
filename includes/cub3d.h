@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/26 20:00:51 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:14:11 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ typedef struct s_raycast
 	double	dist_y;
 	double	p_dir_x;
 	double	p_dir_y;
-	double	cam_plane_dist; //distancia parede
+	double	cam_plane_dist;
 }	t_raycast;
 
 typedef struct s_player
@@ -159,7 +159,7 @@ typedef struct s_data
 	t_mlx		mlx;
 }	t_data;
 
-int		compare(const char *s1, const char *s2);
+int				compare(const char *s1, const char *s2);
 
 // MAP CHECKER - BURNING METHOD
 int				burn_map(t_data *data);
@@ -167,7 +167,7 @@ int				adjacent_burned(t_data *data, int i, int j);
 int				map_test(t_data *data);
 
 void			exit_message(char *message, t_data *data);
-void			read_file(char *file_name, t_data *data); //gabi
+void			read_file(char *file_name, t_data *data);
 void			get_file_info(t_data *data);
 void			print_map(t_data *data);
 
@@ -186,7 +186,6 @@ void			my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 unsigned int	my_mlx_pixel_get(t_wall *img, int x, int y);
 int				key_code(int keycode, t_data *data);
 int				close_win(t_data *data);
-void			print_square(t_mlx *mlx, int x, int y, int size, int color);
 int				config_mlx(t_data *data);
 void			draw_ray(t_data *data, int nbr_rays, int x, float Wallx);
 void			move(t_data *data, int key);

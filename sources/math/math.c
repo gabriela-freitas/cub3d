@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:55:37 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/26 19:58:16 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:12:19 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,5 @@ void	mathematics(t_data *data)
 		data->p.player_j = (int)data->p.p_x;
 		data->p.player_i = (int)data->p.p_y;
 	}
-	// printf("p_x : %f | p_y : %f\n", data->p.p_x, data->p.p_y);
 	calculate_rays(data);
 }
