@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:55:27 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/02/26 17:30:12 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/03/03 16:51:19 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ void	read_file(char *file_name, t_data *data)
 		exit_message("Map file not found", data);
 	fill_map(fd, 0, data);
 	data->map.map = data->file;
-	while (!first_line(*data->map.map))
+	while (*data->map.map && !first_line(*data->map.map))
 		data->map.map++;
+	if (!(*data->map.map) || data->map.map == data->file )
+		exit_message("Invalid map file", data);
 	aux = data->map.map;
 	while (*(aux++))
 	{
