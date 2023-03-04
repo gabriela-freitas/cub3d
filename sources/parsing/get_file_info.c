@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:26:11 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/26 17:29:48 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/03/04 17:25:01 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ static void	open_image(t_wall *wall, char **file, t_data *data)
 {
 	wall->img = mlx_xpm_file_to_image(data->mlx.p_mlx,
 			file[0], &wall->width, &wall->height);
-	free_split(file);
 	if (!wall->img)
 	{
 		printf("texture not found %s\n", file[0]);
+		free_split(file);
 		exit_message("", data);
 	}
+	free_split(file);
 	wall->addr = mlx_get_data_addr(wall->img, &wall->bits_per_pixel,
 			&wall->line_length, &wall->endian);
 }

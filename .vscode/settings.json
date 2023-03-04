@@ -13,7 +13,9 @@
         "memory": "c",
         "ranges": "c",
         "streambuf": "c",
-        "tuple": "c"
+        "tuple": "c",
+        "compare": "c",
+        "concepts": "c"
     },
     "files.autoSave": "afterDelay",
     "editor.insertSpaces": false,
