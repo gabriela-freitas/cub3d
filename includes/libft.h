@@ -6,7 +6,7 @@
 /*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 22:13:32 by gafreita          #+#    #+#             */
-/*   Updated: 2023/03/08 16:55:28 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:52:00 by gafreita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ char		*ft_strrchr(const char *s, int c);
 int			ft_atoi(const char *str);
 long int	ft_atol(const char *str);
 int			is_empty_line(char *str);
-char		*ft_strtrim(char const *s1, char const *set);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:27:51 by gafreita          #+#    #+#             */
-/*   Updated: 2023/02/24 20:47:50 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:17:41 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,18 @@ void	print_map(t_data *data)
 /*Frees the allocated memory and exits the program*/
 void	exit_message(char *message, t_data *data)
 {
+	int	i;
+
 	printf("%s\n", message);
 	free_split(data->file);
 	if (data->mlx.p_mlx && data->mlx.img && data->mlx.p_mlx_win)
 	{
+		i = -1;
+		while (++i < 4)
+		{
+			if (data->wall[i].img)
+				mlx_destroy_image(data->mlx.p_mlx, data->wall[i].img);
+		}
 		mlx_destroy_image(data->mlx.p_mlx, data->mlx.img);
 		mlx_destroy_window(data->mlx.p_mlx, data->mlx.p_mlx_win);
 		mlx_destroy_display(data->mlx.p_mlx);

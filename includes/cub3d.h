@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/03/08 11:24:18 by dmendonc         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:45:33 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ typedef struct s_data
 }	t_data;
 
 int				compare(const char *s1, const char *s2);
+char			*ft_strtrim(char *s1, char const *set);
 
 // MAP CHECKER - BURNING METHOD
 int				burn_map(t_data *data);

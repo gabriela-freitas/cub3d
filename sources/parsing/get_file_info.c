@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:26:11 by gafreita          #+#    #+#             */
-/*   Updated: 2023/03/08 16:57:07 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:32:41 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,14 @@ void	get_file_info(t_data *data)
 {
 	char	**aux;
 	char	**line;
-	char	*trim;
 
 	aux = data->file;
 	while (aux != data->map.map)
 	{
 		if (!is_empty_line(*(aux)))
 		{
-			trim = ft_strtrim(*aux, " ");
-			line = ft_split(trim, ' ');
-			free(trim);
+			*aux = ft_strtrim(*aux, " 	\n");
+			line = ft_split(*aux, ' ');
 			if (!line[2])
 				check_prefix(line, data);
 			else

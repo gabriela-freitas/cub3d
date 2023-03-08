@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 18:00:28 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/03/08 11:28:27 by dmendonc         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:01:56 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	check_char(t_data *data)
 	int	j;
 
 	i = -1;
-	j = 0;
-	while (data->map.map[++i])
+	while (++i < data->map.map_height)
 	{
+		j = 0;
 		while (data->map.map[i][j])
 		{
 			if (data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S' \
@@ -32,7 +32,6 @@ int	check_char(t_data *data)
 			else
 				return (0);
 		}
-		j = -1;
 	}
 	return (1);
 }
