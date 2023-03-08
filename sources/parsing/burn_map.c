@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   burn_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
+/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 16:10:48 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2023/02/21 21:59:21 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/03/08 11:22:46 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	adjacent_conditions(t_data *data, int i, int j, char nbr)
 	if (i - 1 >= 0 && data->map.map[i - 1][j] && \
 	data->map.map[i - 1][j] == nbr)
 		return (1);
-	if (data->map.map[i + 1][j] && data->map.map[i + 1][j] == nbr)
+	if (i +1 < data->map.map_height && data->map.map[i + 1][j] && \
+	data->map.map[i + 1][j] == nbr)
 		return (1);
 	return (0);
 }

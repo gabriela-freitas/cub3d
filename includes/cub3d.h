@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 19:28:17 by gafreita          #+#    #+#             */
-/*   Updated: 2023/03/03 19:20:18 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/03/08 11:24:18 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define FALSE 0
 # define INF 100000
 # define PI 3.141592653589793
-# define STEP 0.15
+# define STEP 0.25
 /* INFINITY is supported */
 
 typedef struct s_mlx
@@ -165,6 +165,7 @@ int				compare(const char *s1, const char *s2);
 int				burn_map(t_data *data);
 int				adjacent_burned(t_data *data, int i, int j);
 int				map_test(t_data *data);
+int				zeros_testing(t_data *data);
 
 void			exit_message(char *message, t_data *data);
 void			read_file(char *file_name, t_data *data);

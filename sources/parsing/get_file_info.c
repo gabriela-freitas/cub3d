@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gafreita <gafreita@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:26:11 by gafreita          #+#    #+#             */
-/*   Updated: 2023/03/04 17:25:01 by gafreita         ###   ########.fr       */
+/*   Updated: 2023/03/08 11:50:05 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,23 @@ static void	open_image(t_wall *wall, char **file, t_data *data)
 
 static void	check_prefix(char **line, t_data *data)
 {
-	int			i;
-	char		**aux;
-	static char	*prefix_list[6] = {"NO", "SO", "WE", "EA", "F", "C"};
+	static int			i = 0;
+	char				**aux;
+	static char			*prefix_list[6] = {"NO", "SO", "WE", "EA", "F", "C"};
 
-	i = -1;
-	while (++i < 6)
+	if (!ft_strncmp(prefix_list[i], line[0], ft_strlen(prefix_list[i])))
 	{
-		if (!ft_strncmp(prefix_list[i], line[0], ft_strlen(prefix_list[i])))
+		if (i < 4)
 		{
-			if (i < 4)
-			{
-				aux = ft_split(line[1], '\n');
-				open_image(&data->wall[i], aux, data);
-			}
-			else
-				data->colors[i - 4] = create_rgb(line[1], data);
+			aux = ft_split(line[1], '\n');
+			open_image(&data->wall[i], aux, data);
 		}
+		else
+			data->colors[i - 4] = create_rgb(line[1], data);
 	}
+	else
+		exit_message("❌ Wrong file format", data);
+	i ++;
 }
 
 static int	create_rgb(char *rgb, t_data *data)

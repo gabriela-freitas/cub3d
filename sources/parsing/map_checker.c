@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ratinhosujo <ratinhosujo@student.42.fr>    +#+  +:+       +#+        */
+/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 18:00:28 by dmendonc          #+#    #+#             */
-/*   Updated: 2023/02/21 21:59:36 by ratinhosujo      ###   ########.fr       */
+/*   Updated: 2023/03/08 11:28:27 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int	map_test(t_data *data)
 		printf("\n❌ Not one player position.\n");
 		return (0);
 	}
-	if (!closed_map(data))
+	if (!closed_map(data) || !zeros_testing(data))
 	{
 		printf("\n❌ Map is not closed.\n");
 		return (0);
